@@ -4,6 +4,13 @@ import {Icon} from 'react-native-elements';
 import {colorPrimary, colorPrimaryDark} from '../../assets/base';
 
 export default class SelectedItem extends Component {
+
+    remove = (item) => {
+        return () => {
+            this.props.remove(item);
+        };
+    }
+
     render () {
         return (
             <View style={styles.container}>
@@ -12,6 +19,7 @@ export default class SelectedItem extends Component {
                 name='close'
                 color='#fff'
                 containerStyle={styles.iconContainer}
+                onPress={this.remove(this.props.item)}
                 />
             </View>
         );

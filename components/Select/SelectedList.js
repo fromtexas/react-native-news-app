@@ -5,7 +5,7 @@ import SelectedItem from './SelectedItem';
 export default class SelectList extends Component{
     renderSelectedList = () => {
         return this.props.selected.map((item,index) => {
-            return <SelectedItem key={index} item={item}/>
+            return <SelectedItem remove={this.props.remove} key={index} item={item}/>
         })
     }
     render () {

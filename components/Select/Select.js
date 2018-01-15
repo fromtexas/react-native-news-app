@@ -30,9 +30,10 @@ export default class Select extends Component {
 
     render () {
         return (
-            <View>
+            <View style={this.props.style}>
                 <SelectedList
                 selected={this.state.checkedArr}
+                remove={this.removeFromArr}
                 />
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 
