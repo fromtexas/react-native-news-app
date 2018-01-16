@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, Button, SectionList} from 'react-native';
+import {View, Text, SectionList} from 'react-native';
+import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
 import SelectedList from './SelectedList';
 import SelectModal from './SelectModal';
+import {colorPrimaryLight} from '../../assets/base';
 
 export default class Select extends Component {
     state = {
@@ -38,6 +40,8 @@ export default class Select extends Component {
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 
                 title={this.props.type} 
+                buttonStyle={{backgroundColor: colorPrimaryLight}}
+                icon={{name: this.props.icon}}
                 />
                 <SelectModal
                 options={this.props.options}

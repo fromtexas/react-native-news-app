@@ -20,6 +20,9 @@ export default class SelectList extends Component{
 const styles = {
     container: {
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 5
     }
 }

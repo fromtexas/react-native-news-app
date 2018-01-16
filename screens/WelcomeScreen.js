@@ -28,23 +28,32 @@ export default class WelcomeScreen extends Component{
 
                     <Select
                     style={{marginTop: 10, marginBottom: 10}}
-                    type='Select categories'
+                    type='CATEGORY'
                     options={categories}
+                    icon='call-received'
                     />
 
                     <Select
-                    style={{marginTop: 10, marginBottom: 10}}
-                    type='Select language'
+                    style={{marginTop: 5, marginBottom: 10}}
+                    type='LANGUAGE'
                     options={language}
+                    icon='web'
                     />
 
                     <Select
-                    style={{marginTop: 10, marginBottom: 10}}
-                    type='Select country'
+                    style={{marginTop: 5, marginBottom: 20}}
+                    type='COUNTRY'
                     options={country}
+                    icon='map'
                     />
 
-                    <Button title='Finish!'/>
+                    <Button 
+                    buttonStyle={{backgroundColor: colorGreyLight1}}
+                    color={colorGreyDark1} 
+                    icon={{name: 'check', color: colorGreyDark1}} 
+                    title='DONE'
+
+                    />
                 </ScrollView>
 
                 
@@ -56,7 +65,8 @@ export default class WelcomeScreen extends Component{
 const styles = {
     screenContainer: {
         flex: 1,
-        backgroundColor: colorGreyDark1
+        backgroundColor: colorGreyDark1,
+        paddingBottom: 20
     },
     screenTitle: {
         textAlign: 'center',
@@ -71,6 +81,6 @@ const styles = {
     },
     iconContainer: {
         alignSelf: 'center',
-        paddingBottom: 10
+        paddingTop: 10
     }
 }

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Modal, Button} from 'react-native';
+import {View, Modal, ScrollView} from 'react-native';
+import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
-import {colorGreyLight1} from '../../assets/base';
+import {colorGreyLight1, colorPrimaryLight} from '../../assets/base';
 
 export default class SelectModal extends Component {
     state = {
@@ -41,10 +42,19 @@ export default class SelectModal extends Component {
                 transparent={true}
                 >
                 <View style={styles.listWrap}>
-                    <View style={styles.list}>
+                    <ScrollView>
+
                         {this.renderSelectList()}
-                        <Button onPress={this.props.close} title='close'/>
-                    </View>
+                        <Button  
+                        backgroundColor={colorPrimaryLight}
+                        color={colorGreyLight1}
+                        onPress={this.props.close} 
+                        icon={{name: 'close', color: colorGreyLight1}} 
+                        title='CLOSE'
+                        containerViewStyle={{marginTop: 10}}
+                        />
+
+                    </ScrollView>
                 </View>
                 </Modal>
             </View>
@@ -56,7 +66,9 @@ const styles ={
     listWrap: {
         justifyContent: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
-        flex: 1
+        flex: 1,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     container: {
         backgroundColor: 'transparent',
