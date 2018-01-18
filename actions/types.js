@@ -1,4 +1,4 @@
-export const GET_NEWS = 'GET_NEWS';
+export const FETCH_NEWS = 'FETCH_NEWS';
 export const REMOVE = 'REMOVE';
 
 export const ADD_CATEGORY = 'ADD_CATEGORY';
