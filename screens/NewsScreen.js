@@ -2,11 +2,28 @@ import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {connect} from 'react-redux';
+import NavigationStateNotifier from '../utils/NavigationStateNotifier';
+import NewsList from '../components/NewsList';
+import CategorySlider from '../components/CategorySlider';
 
 class NewsScreen extends Component{
+    constructor (props) {
+        super(props);
+        const onEnter = () => {
+            this.setState({activeScreen: true});
+            this.props.fetchNews();  
+        };
+
+        const onExit = () => {
+            this.setState({activeScreen: false});
+        };
+
+        NavigationStateNotifier.newListener(this, onEnter, onExit);
+        
+    }
+    
     static navigationOptions = ({navigation}) => {
         return {
-          title: 'Your news collection',
           headerRight: (
             <Button
               title='Settings'
@@ -14,30 +31,26 @@ class NewsScreen extends Component{
               color = 'rgba(0,122,255,1)'
               onPress={() => navigation.navigate('settings')} />)
         }
-      };
+    };
 
-    fetch = () => {
-        this.props.fetchNews();
-    }
-
-    componentDidMount (){
-        console.log('mounted');
-        
+    state = {
+        activeScreen: false
     }
 
     render () {
         return (
             <View>
-                <Text>News</Text>
-                <Button title='get' onPress={this.fetch}/>
+                <CategorySlider category={this.props.category}/>
+                <NewsList news={this.props.news}/>
             </View>
         );
     }
 }
 
 
-const mapStateToProps = ({news}) => ({
-    news
+const mapStateToProps = ({news, category}) => ({
+    news,
+    category
 });
 
 

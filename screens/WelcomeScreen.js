@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
+import {connect} from 'react-redux';
 import {colorGreyDark1, colorGreyLight1} from '../assets/base';
 import Select from '../components/Select/Select';
+import NavigationStateNotifier from '../utils/NavigationStateNotifier';
+import {addCategory, removeCategory} from '../actions/CategoryActions';
+
 
 var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
@@ -11,7 +15,27 @@ const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co
 
 
 
-export default class WelcomeScreen extends Component{
+class WelcomeScreen extends Component{
+    constructor (props) {
+        super(props);
+        const onEnter = () => {
+            this.setState({activeScreen: true});
+            console.log('active welcome');
+            
+        };
+
+        const onExit = () => {
+            this.setState({activeScreen: true});
+            console.log('not active welcome');
+        };
+
+        NavigationStateNotifier.newListener(this, onEnter, onExit);
+    }
+
+    state = {
+        activeScreen: false
+    }
+
     render () {
         return (
             <View style={styles.screenContainer}>
@@ -27,6 +51,9 @@ export default class WelcomeScreen extends Component{
                     />
 
                     <Select
+                    add={this.props.addCategory}
+                    remove={this.props.removeCategory}
+                    items={this.props.category}
                     style={{marginTop: 10, marginBottom: 10}}
                     type='CATEGORY'
                     options={categories}
@@ -61,6 +88,13 @@ export default class WelcomeScreen extends Component{
         );
     }
 }
+
+
+const mapStateToProps = ({category}) => ({
+    category
+});
+
+export default connect(mapStateToProps, {addCategory, removeCategory})(WelcomeScreen);
 
 const styles = {
     screenContainer: {

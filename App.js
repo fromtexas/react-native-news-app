@@ -6,6 +6,7 @@ import store from './store';
 import WelcomeScreen from './screens/WelcomeScreen';
 import NewsScreen from './screens/NewsScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import NavigationStateNotifier from './utils/NavigationStateNotifier';
 
 //a8f31bc8eb22494a844c62dbc7b72b55 api key
 export default class App extends React.Component {
@@ -15,15 +16,17 @@ export default class App extends React.Component {
       news: {screen: StackNavigator({
         news: {screen: NewsScreen},
         settings: {screen: SettingsScreen}
+      },{
+        headerMode: 'none'
       })
     }
-    },{
-      lazy: true
     });
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <MainNavigator/>
+          <MainNavigator
+          onNavigationStateChange={(prevState, currentState) => {NavigationStateNotifier.onNavigationStateChange(prevState, currentState)}}
+          />
         </View>
       </Provider>
     );

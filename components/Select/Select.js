@@ -7,6 +7,11 @@ import SelectModal from './SelectModal';
 import {colorPrimaryLight} from '../../assets/base';
 
 export default class Select extends Component {
+
+    static defaultProps = {
+        items: []
+    }
+
     state = {
         checkedArr: [],
         showList: false
@@ -34,8 +39,8 @@ export default class Select extends Component {
         return (
             <View style={this.props.style}>
                 <SelectedList
-                selected={this.state.checkedArr}
-                remove={this.removeFromArr}
+                selected={this.props.items}
+                remove={this.props.remove}
                 />
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 
@@ -45,11 +50,11 @@ export default class Select extends Component {
                 />
                 <SelectModal
                 options={this.props.options}
-                add={this.addToCheckedArr}
-                remove={this.removeFromArr}
+                add={this.props.add}
+                remove={this.props.remove}
                 visible={this.state.showList}
                 close={this.closeModal}
-                checked={this.state.checkedArr}
+                checked={this.props.items}
                 />
             </View>
         );
