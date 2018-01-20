@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
+import {activeCategory} from '../actions/ActiveCategory';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import NewsList from '../components/NewsList';
@@ -40,8 +41,8 @@ class NewsScreen extends Component{
     render () {
         return (
             <View>
-                <CategorySlider category={this.props.category}/>
-                <NewsList news={this.props.news}/>
+                <CategorySlider activeCategory={this.props.activeCategory} category={this.props.category}/>
+                <NewsList category={this.props.category} news={this.props.news}/>
             </View>
         );
     }
@@ -54,4 +55,4 @@ const mapStateToProps = ({news, category}) => ({
 });
 
 
-export default connect(mapStateToProps, {fetchNews})(NewsScreen);
+export default connect(mapStateToProps, {fetchNews, activeCategory})(NewsScreen);

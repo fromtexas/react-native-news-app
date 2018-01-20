@@ -6,14 +6,14 @@ import NewsItem from './NewsItem';
 export default class NewsList extends Component {
 
     renderList = () => {
-        return this.props.news.map((item, index) => {
+        const category = this.props.news[this.props.category[1]] || [];
+        return category.map((item, index) => {
             return <NewsItem key={index} {...item}/>
         });
     }
 
     render () {
-        console.log(this.props.news);
-        
+      
         return (
             <ScrollView>
                 {this.renderList()}

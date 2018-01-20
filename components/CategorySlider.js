@@ -5,6 +5,8 @@ import {View, Text, ScrollView, Button, Dimensions} from 'react-native';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 export default class CategorySlider extends Component {
 
+
+
     renderCategories = () => {
         return this.props.category.map((item) => {
             return (
@@ -15,9 +17,12 @@ export default class CategorySlider extends Component {
         });
     }
 
+  
+
     render () {
         return (
             <ScrollView
+            scrollEventThrottle={this.props.category.length}
             showsHorizontalScrollIndicator={false}
             pagingEnabled
             horizontal
