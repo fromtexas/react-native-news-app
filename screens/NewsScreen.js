@@ -5,7 +5,7 @@ import {activeCategory} from '../actions/ActiveCategory';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import NewsList from '../components/NewsList';
-import CategorySlider from '../components/CategorySlider';
+import CategorySlider from '../components/Slider/CategorySlider';
 
 class NewsScreen extends Component{
     constructor (props) {
@@ -42,16 +42,17 @@ class NewsScreen extends Component{
         return (
             <View>
                 <CategorySlider activeCategory={this.props.activeCategory} category={this.props.category}/>
-                <NewsList category={this.props.category} news={this.props.news}/>
+                <NewsList activeCategory={this.props.activeCategoryItem} category={this.props.category} news={this.props.news}/>
             </View>
         );
     }
 }
 
 
-const mapStateToProps = ({news, category}) => ({
+const mapStateToProps = ({news, category, activeCategory}) => ({
     news,
-    category
+    category,
+    activeCategoryItem: activeCategory
 });
 
 

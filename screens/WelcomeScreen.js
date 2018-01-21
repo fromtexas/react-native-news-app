@@ -6,6 +6,7 @@ import {colorGreyDark1, colorGreyLight1} from '../assets/base';
 import Select from '../components/Select/Select';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
+import {addCountry, removeCountry} from '../actions/CountryActions';
 
 
 var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
@@ -68,6 +69,9 @@ class WelcomeScreen extends Component{
                     />
 
                     <Select
+                    add={this.props.addCountry}
+                    remove={this.props.removeCountry}
+                    items={this.props.country}
                     style={{marginTop: 5, marginBottom: 20}}
                     type='COUNTRY'
                     options={country}
@@ -90,11 +94,12 @@ class WelcomeScreen extends Component{
 }
 
 
-const mapStateToProps = ({category}) => ({
-    category
+const mapStateToProps = ({category, country}) => ({
+    category,
+    country
 });
 
-export default connect(mapStateToProps, {addCategory, removeCategory})(WelcomeScreen);
+export default connect(mapStateToProps, {addCategory, removeCategory, addCountry, removeCountry})(WelcomeScreen);
 
 const styles = {
     screenContainer: {

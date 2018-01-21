@@ -6,7 +6,9 @@ import NewsItem from './NewsItem';
 export default class NewsList extends Component {
 
     renderList = () => {
-        const category = this.props.news[this.props.category[1]] || [];
+        const activeCategory = this.props.activeCategory || this.props.category[0];
+        console.log(activeCategory);
+        const category = this.props.news[activeCategory] || [];
         return category.map((item, index) => {
             return <NewsItem key={index} {...item}/>
         });
