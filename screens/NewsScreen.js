@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, StatusBar} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {activeCategory} from '../actions/ActiveCategory';
 import {connect} from 'react-redux';
@@ -10,9 +10,9 @@ import CategorySlider from '../components/Slider/CategorySlider';
 class NewsScreen extends Component{
     constructor (props) {
         super(props);
-        const onEnter = () => {
-            this.setState({activeScreen: true});
-            this.props.fetchNews();  
+        const onEnter = async () => {
+            await this.props.fetchNews();
+            this.setState({activeScreen: true});  
         };
 
         const onExit = () => {
@@ -38,13 +38,23 @@ class NewsScreen extends Component{
         activeScreen: false
     }
 
-    render () {
-        return (
-            <View>
-                <CategorySlider activeCategory={this.props.activeCategory} category={this.props.category}/>
-                <NewsList activeCategory={this.props.activeCategoryItem} category={this.props.category} news={this.props.news}/>
+    renderScreen = () => {
+        if(this.state.activeScreen){
+            return (
+            <View style={{paddingTop: StatusBar.currentHeight}}>
+                <CategorySlider news={this.props.news} activeCategory={this.props.activeCategory} category={this.props.category}/>
             </View>
-        );
+            );
+        } else {
+            return (
+                <View>
+                </View>
+            );
+        }
+    }
+
+    render () {
+        return this.renderScreen();
     }
 }
 

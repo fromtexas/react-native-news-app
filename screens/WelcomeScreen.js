@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StatusBar} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {colorGreyDark1, colorGreyLight1} from '../assets/base';
@@ -105,7 +105,8 @@ const styles = {
     screenContainer: {
         flex: 1,
         backgroundColor: colorGreyDark1,
-        paddingBottom: 20
+        paddingBottom: 20,
+        paddingTop: StatusBar.currentHeight
     },
     screenTitle: {
         textAlign: 'center',
