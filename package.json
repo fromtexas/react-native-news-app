@@ -4,6 +4,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "expo": "^24.0.0",
+    "moment": "^2.20.1",
     "qs": "^6.5.1",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
