@@ -4,8 +4,8 @@ import {fetchNews} from '../actions/NewsActions';
 import {activeCategory} from '../actions/ActiveCategory';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
-import NewsList from '../components/NewsList';
 import CategorySlider from '../components/Slider/CategorySlider';
+
 
 class NewsScreen extends Component{
     constructor (props) {

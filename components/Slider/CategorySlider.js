@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {ViewPagerAndroid, View, Text, Animated, Dimensions, Image, PanResponder, ScrollView} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
-import CategoryList from './CategoryList';
 import moment from 'moment';
-
+import NewsList from './NewsList';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SWIPE_THRESHOLD = 0.6* SCREEN_HEIGHT;
@@ -16,34 +15,26 @@ export default class CategorySlider extends Component {
         onStartShouldSetPanResponder: () => true,
         onPanResponderMove: (event, gesture) => {
             this.imagePosition.setValue({y: gesture.dy });
-            this.state.blur.setValue(-1*gesture.dy/100);
-            // this.state.blur.setValue(this.imagePosition.y.interpolate({
-            //         inputRange: [0, SCREEN_HEIGHT],
-            //         outputRange: [0, 3],
-            //         extrapolate: 'clamp',
-            // }));
-            // console.log(this.state.blur);
-
+            this.getScale(gesture.dy);
         },
         onPanResponderRelease: (event, gesture) => {
           if (gesture.dy < -SWIPE_THRESHOLD) {
             this.forceSwipe();
           } else {
             this.resetPosition();
-            this.resetBlur();
+            this.resetScale();
           }
         },
         onShouldBlockNativeResponder: () => false
     })
 
     imagePosition = new Animated.ValueXY(0,0)
-    //new Animated.Value(0) for activeDot
     state = {
         activeDot: 0 ,
         dotPosition: new Animated.ValueXY(0,0),
         imagePosition: this.imagePosition,
         panResponder: this.panResponder,
-        blur: new Animated.Value(0)
+        scale: new Animated.Value(1)
     }
 
     resetPosition = () => {
@@ -59,18 +50,19 @@ export default class CategorySlider extends Component {
         }).start();
     }
 
-    getBlur = () => {
-        const imageBlur = this.state.imagePosition.y.interpolate({
-            inputRange: [0, SCREEN_HEIGHT],
-            outputRange: [0, 10],
-            extrapolate: 'clamp',
-          });
-        this.refs.blurImage.setNativeProps({ blurRadius: imageBlur });
+    getScale = (dY) => {
+        let scale = Math.round(dY);
+        if(scale > 0){
+            scale = 1+(scale/2500);
+        } else{
+            scale = 1+(-1*scale/2500);
+        }
+        this.state.scale.setValue(scale);
     }
 
-    resetBlur = () => {
-        Animated.spring(this.state.blur, {
-            toValue: 0
+    resetScale = () => {
+        Animated.spring(this.state.scale, {
+            toValue: 1
           }).start();
     }
 
@@ -79,46 +71,36 @@ export default class CategorySlider extends Component {
         return this.props.category.map((item) => {
             return (
                 <View style={styles.pageStyle} key={item}>
-                <View style={{height: 60, backgroundColor: 'transparent', zIndex: 9}}>
+                <View style={{height: 60, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>
                 <Text style={styles.pageTitile}>{item.toUpperCase()}</Text>
                 </View>
                 <Animated.View 
                 style={[this.state.imagePosition.getLayout(), {flex: 1, position: 'absolute', width: '100%', height: '100%', zIndex: 5, backgroundColor: colorGreyDark1}]}
                 {...this.state.panResponder.panHandlers}
                 >
-                <Animated.Image
-                blurRadius={this.state.blur}
+                <Image
                 ref='blurImage'
                 source={{uri: this.props.news[item][0].urlToImage}}
                 style={[styles.image]}
                 />
-                <View style={{ flex: 1, padding: 20, justifyContent: 'flex-end'}}>
+                <Animated.View style={{padding: 35, flex: 1, justifyContent: 'flex-end', transform: [{scale: this.state.scale}]}}>             
+                <View>
+                <View style={{width: 5, height: '90%', position: 'absolute', left: -10, backgroundColor: colorPrimaryLight}}></View>
                 <Text style={styles.itemSource}>{this.props.news[item][0].source.name}</Text>
                 <Text style={styles.itemTitle}>{this.props.news[item][0].title}</Text>
                 <Text style={styles.itemTime}>{moment.parseZone(this.props.news[item][0].publishedAt).fromNow()}</Text>
+                </View>
                 <Icon
                 size={35}
                 containerStyle={{alignSelf: 'center', marginBottom: 20}}
                 color={colorGreyLight1}
                 name='keyboard-arrow-up'
                 />
-                </View>
+                </Animated.View>
                 </Animated.View>
 
+                <NewsList news={this.props.news[item]}/>
 
-                <ScrollView style={{paddingTop: 60, backgroundColor: colorGreyDark1}}>
-                    {this.props.news[item].map((item, index) => {
-                        return (
-                            <View style={{padding: 20}} key={index}>
-                            <Text style={{color: colorGreyLight1, fontSize: 18, fontWeight: 'bold'}}>{item.title}</Text>
-                            <Text style={{color: colorGreyLight1, fontSize: 16}}>{item.description}</Text>
-                            <Text style={{color: colorGreyLight1}}>{item.author}</Text>
-                            <Text style={{color: colorGreyLight1}}>{moment.parseZone(item.publishedAt).fromNow()}</Text>
-                            <Text style={{color: colorGreyLight1, fontStyle: 'italic'}}>{item.source.name}</Text>
-                            </View>
-                        );
-                    })}
-                </ScrollView>
                 </View>
             );
         });
@@ -148,13 +130,9 @@ export default class CategorySlider extends Component {
         });
     }
 
-    //fuck this. i don't need active category anymore
+
     getIndex = ({nativeEvent}) => {
-        // this.setState({activeDot: nativeEvent.position}, () => {
-           
-        // });
         this.move(nativeEvent.position);
-        //this.props.activeCategory(this.props.category[nativeEvent.position]);
     }
 
     render () {
