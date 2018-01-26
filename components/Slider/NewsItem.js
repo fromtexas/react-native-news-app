@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Linking} from 'react-native';
 import moment from 'moment';
 import {Icon} from 'react-native-elements';
 import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
@@ -20,11 +20,13 @@ export default class NewsItem extends Component {
             name='external-link'
             type='feather'
             color={colorGreyLight1}
+            onPress={() => Linking.openURL(this.props.url)}
             />
             <Icon
             containerStyle={styles.icon}
             name='close'
             color={colorGreyLight1}
+            onPress={()=> this.props.banAction(this.props.source.name)}
             />
             </View>
             

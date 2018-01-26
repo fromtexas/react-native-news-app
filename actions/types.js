@@ -8,3 +8,6 @@ export const ACTIVE_CATEGORY = 'ACTIVE_CATEGORY';
 
 export const ADD_COUNTRY = 'ADD_COUNTRY';
 export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
+
+export const BAN_RESOURCE = 'BAN_RESOURCE';
+export const UNBAN_RESOURCE = 'UNBAN_RESOURCE';

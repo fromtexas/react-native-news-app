@@ -5,6 +5,7 @@ import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colo
 import moment from 'moment';
 import NewsList from './NewsList';
 
+
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SWIPE_THRESHOLD = 0.6* SCREEN_HEIGHT;
 const SWIPE_OUT_DURATION = 250;
@@ -67,7 +68,7 @@ export default class CategorySlider extends Component {
     }
 
     renderCategories = () => {
-
+        
         return this.props.category.map((item) => {
             return (
                 <View style={styles.pageStyle} key={item}>
@@ -99,7 +100,7 @@ export default class CategorySlider extends Component {
                 </Animated.View>
                 </Animated.View>
 
-                <NewsList news={this.props.news[item]}/>
+                <NewsList banAction={this.props.banAction} baned={this.props.baned} news={this.props.news[item]}/>
 
                 </View>
             );

@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {View, Text, Button, StatusBar} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {activeCategory} from '../actions/ActiveCategory';
+import {banResourse} from '../actions/ResourceActions';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import CategorySlider from '../components/Slider/CategorySlider';
+
 
 
 class NewsScreen extends Component{
@@ -42,7 +44,7 @@ class NewsScreen extends Component{
         if(this.state.activeScreen){
             return (
             <View style={{paddingTop: StatusBar.currentHeight}}>
-                <CategorySlider news={this.props.news} activeCategory={this.props.activeCategory} category={this.props.category}/>
+                <CategorySlider banAction={this.props.banResourse} baned={this.props.ban} news={this.props.news}  category={this.props.category}/>
             </View>
             );
         } else {
@@ -59,11 +61,11 @@ class NewsScreen extends Component{
 }
 
 
-const mapStateToProps = ({news, category, activeCategory}) => ({
+const mapStateToProps = ({news, category, ban}) => ({
     news,
     category,
-    activeCategoryItem: activeCategory
+    ban
 });
 
 
-export default connect(mapStateToProps, {fetchNews, activeCategory})(NewsScreen);
+export default connect(mapStateToProps, {fetchNews, banResourse})(NewsScreen);
