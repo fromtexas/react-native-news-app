@@ -13,17 +13,14 @@ export default class App extends React.Component {
   render() {
     const MainNavigator = TabNavigator({
       welcome: {screen: WelcomeScreen},
-      news: {screen: StackNavigator({
-        news: {screen: NewsScreen},
-        settings: {screen: SettingsScreen}
-      },{
-        headerMode: 'none'
-      })
+      news: {screen: NewsScreen},
+      settings: {screen: SettingsScreen},
     }
-    },{
+    ,{
       navigationOptions: {
         tabBarVisible:  false
-      }
+      },
+      swipeEnabled: false,
     });
     return (
       <Provider store={store}>

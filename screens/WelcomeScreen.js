@@ -7,6 +7,7 @@ import Select from '../components/Select/Select';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
 import {addCountry, removeCountry} from '../actions/CountryActions';
+import {settingsUpdated} from '../actions/SettingsActions';
 
 
 var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
@@ -22,7 +23,6 @@ class WelcomeScreen extends Component{
         const onEnter = () => {
             this.setState({activeScreen: true});
             console.log('active welcome');
-            
         };
 
         const onExit = () => {
@@ -37,7 +37,12 @@ class WelcomeScreen extends Component{
         activeScreen: false
     }
 
+    componentDidMount(){
+        this.props.settingsUpdated(true);
+    }
+
     render () {
+        
         return (
             <View style={styles.screenContainer}>
                 <ScrollView>
@@ -83,7 +88,7 @@ class WelcomeScreen extends Component{
                     color={colorGreyDark1} 
                     icon={{name: 'check', color: colorGreyDark1}} 
                     title='DONE'
-
+                    onPress={()=>this.props.navigation.navigate('news')}
                     />
                 </ScrollView>
 
@@ -99,7 +104,7 @@ const mapStateToProps = ({category, country}) => ({
     country
 });
 
-export default connect(mapStateToProps, {addCategory, removeCategory, addCountry, removeCountry})(WelcomeScreen);
+export default connect(mapStateToProps, {addCategory, removeCategory, addCountry, removeCountry, settingsUpdated})(WelcomeScreen);
 
 const styles = {
     screenContainer: {

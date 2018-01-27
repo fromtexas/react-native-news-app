@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, Button, StatusBar} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {activeCategory} from '../actions/ActiveCategory';
+import {settingsUpdated} from '../actions/SettingsActions';
 import {banResourse} from '../actions/ResourceActions';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
@@ -9,32 +10,26 @@ import CategorySlider from '../components/Slider/CategorySlider';
 
 
 
-class NewsScreen extends Component{
+class NewsScreen extends PureComponent{
     constructor (props) {
         super(props);
         const onEnter = async () => {
-            await this.props.fetchNews();
-            this.setState({activeScreen: true});  
+            console.log(this.props.settings);
+            if(this.props.settings){
+                await this.props.fetchNews();
+                this.props.settingsUpdated(false);
+            }   
+            this.setState({activeScreen: true});       
         };
 
         const onExit = () => {
-            this.setState({activeScreen: false});
+            //this.setState({activeScreen: false});
         };
 
         NavigationStateNotifier.newListener(this, onEnter, onExit);
         
     }
     
-    static navigationOptions = ({navigation}) => {
-        return {
-          headerRight: (
-            <Button
-              title='Settings'
-              backgroundColor='rgba(0,0,0,0)'
-              color = 'rgba(0,122,255,1)'
-              onPress={() => navigation.navigate('settings')} />)
-        }
-    };
 
     state = {
         activeScreen: false
@@ -44,7 +39,13 @@ class NewsScreen extends Component{
         if(this.state.activeScreen){
             return (
             <View style={{paddingTop: StatusBar.currentHeight}}>
-                <CategorySlider banAction={this.props.banResourse} baned={this.props.ban} news={this.props.news}  category={this.props.category}/>
+                <CategorySlider 
+                banAction={this.props.banResourse} 
+                baned={this.props.ban} news={this.props.news}  
+                category={this.props.category}
+                navigation={this.props.navigation.navigate}
+                reload={this.props.fetchNews}
+                />
             </View>
             );
         } else {
@@ -61,11 +62,12 @@ class NewsScreen extends Component{
 }
 
 
-const mapStateToProps = ({news, category, ban}) => ({
+const mapStateToProps = ({news, category, ban, settings}) => ({
     news,
     category,
-    ban
+    ban,
+    settings
 });
 
 
-export default connect(mapStateToProps, {fetchNews, banResourse})(NewsScreen);
+export default connect(mapStateToProps, {fetchNews, banResourse, settingsUpdated})(NewsScreen);

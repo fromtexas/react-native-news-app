@@ -1,9 +1,9 @@
-import {FETCH_JOBS} from '../actions/types';
+import {SETTINGS_UPDATED} from '../actions/types';
 
-export default (state = {} , action) => {
+export default (state = false , action) => {
   switch (action.type) {
-    case FETCH_JOBS:
-      return action.payload.results;
+    case SETTINGS_UPDATED:
+      return action.payload;
     default:
       return state;
   }

@@ -150,12 +150,14 @@ export default class CategorySlider extends Component {
             containerStyle={styles.reload}
             name='update'
             color={colorGreyLight1}
+            onPress={() => this.props.reload()}
             />
             <Icon 
             containerStyle={styles.dots}
             name='dots-three-vertical'
             color={colorGreyLight1}
             type='entypo'
+            onPress={() => this.props.navigation('settings')}
             />
             <View style={styles.dotsRow}>
             <Animated.View
