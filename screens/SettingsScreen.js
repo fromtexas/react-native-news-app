@@ -28,7 +28,7 @@ class SettingsScreen extends Component{
                 name='arrow-back'
                 color={colorGreyLight1}
                 size={32}
-                containerStyle={{paddingLeft:20}}
+                containerStyle={{marginLeft:20, borderRadius: 50}}
                 onPress={()=> this.props.navigation.navigate('news')}
                 />
                 <Text style={{color: colorGreyLight1, fontSize: 22, fontWeight: 'bold', paddingLeft: 20}}>Settings</Text>

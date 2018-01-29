@@ -229,12 +229,14 @@ var styles = {
     reload: {
         position: 'absolute',
         top: 25,
-        right: 60
+        right: 60,
+        borderRadius: 50
     },
     dots: {
         position: 'absolute',
         top: 25,
-        right: 20
+        right: 20,
+        borderRadius: 50
     },
     dotsRow: {
         position: 'absolute',

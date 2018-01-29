@@ -17,13 +17,17 @@ export default class SelectItem extends Component {
         });
     }
 
-    change = () => {
+    //here add settings
+    change = () => { 
+        this.props.update(true);
+
         if(this.state.checked){
             this.props.remove(this.props.item);
         } else{
             this.props.add(this.props.item);
-        }   
-        this.setState({checked: !this.state.checked});
+        }
+         
+        this.setState({checked: !this.state.checked});  
     }
     render () {
         const title = this.props.item.charAt(0).toUpperCase() + this.props.item.slice(1);

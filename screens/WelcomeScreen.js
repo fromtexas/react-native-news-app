@@ -37,10 +37,6 @@ class WelcomeScreen extends Component{
         activeScreen: false
     }
 
-    componentDidMount(){
-        this.props.settingsUpdated(true);
-    }
-
     render () {
         
         return (

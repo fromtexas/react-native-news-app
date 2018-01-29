@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, Text, Button, StatusBar} from 'react-native';
+import {View, Text, Button, StatusBar, ActivityIndicator} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {activeCategory} from '../actions/ActiveCategory';
 import {settingsUpdated} from '../actions/SettingsActions';
@@ -7,6 +7,7 @@ import {banResourse} from '../actions/ResourceActions';
 import {connect} from 'react-redux';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import CategorySlider from '../components/Slider/CategorySlider';
+import {colorPrimaryDark, colorGreyDark1} from '../assets/base';
 
 
 
@@ -14,12 +15,12 @@ class NewsScreen extends PureComponent{
     constructor (props) {
         super(props);
         const onEnter = async () => {
-            console.log(this.props.settings);
             if(this.props.settings){
                 await this.props.fetchNews();
                 this.props.settingsUpdated(false);
-            }   
-            this.setState({activeScreen: true});       
+                this.setState({activeScreen: true});
+            }
+
         };
 
         const onExit = () => {
@@ -30,6 +31,15 @@ class NewsScreen extends PureComponent{
         
     }
     
+    componentWillReceiveProps () {
+        this.setState((prevState, props)=>{
+            if(props.settings){
+                return {
+                    activeScreen: false
+                };
+            }   
+        });
+    }
 
     state = {
         activeScreen: false
@@ -38,7 +48,7 @@ class NewsScreen extends PureComponent{
     renderScreen = () => {
         if(this.state.activeScreen){
             return (
-            <View style={{paddingTop: StatusBar.currentHeight}}>
+            <View style={{paddingTop: StatusBar.currentHeight, backgroundColor: colorGreyDark1}}>
                 <CategorySlider 
                 banAction={this.props.banResourse} 
                 baned={this.props.ban} news={this.props.news}  
@@ -50,7 +60,8 @@ class NewsScreen extends PureComponent{
             );
         } else {
             return (
-                <View>
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorGreyDark1}}>
+                <ActivityIndicator size="large" color={colorPrimaryDark} />
                 </View>
             );
         }

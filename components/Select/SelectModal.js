@@ -22,6 +22,7 @@ export default class SelectModal extends Component {
         return this.props.options.map((item, index) => {
             return (
                 <SelectItem
+                update={this.props.update}
                 key={index}
                 item={item}
                 add={this.props.add}

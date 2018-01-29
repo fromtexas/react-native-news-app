@@ -9,11 +9,15 @@ export default class NewsItem extends Component {
         return (
             <View style={styles.container}>
 
+            <Image
+            source={require('../../assets/239H.png')}
+            style={{height: 200, width: '100%', marginBottom: 30}}
+            />
+
             <View style={styles.iconsRow}>
             {/* <Image 
             source={{uri: this.props.urlToImage}}
             style={styles.image}
-            
             /> */}
             <Icon
             containerStyle={styles.icon}
@@ -45,7 +49,9 @@ export default class NewsItem extends Component {
 const styles = {
     iconsRow: {
         flexDirection: 'row',
-        marginBottom: 10
+        position: 'absolute',
+        width: '100%',
+        top: 170
     },
     icon: {
         width: 70,
@@ -56,7 +62,8 @@ const styles = {
     },
     container: {
         padding: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        position: 'relative'
     },
     image: {
         width: 70,

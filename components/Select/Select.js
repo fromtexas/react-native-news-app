@@ -5,30 +5,17 @@ import SelectItem from './SelectItem';
 import SelectedList from './SelectedList';
 import SelectModal from './SelectModal';
 import {colorPrimaryLight} from '../../assets/base';
+import {connect} from 'react-redux';
+import {settingsUpdated} from '../../actions/SettingsActions';
 
-export default class Select extends Component {
+class Select extends Component {
 
     static defaultProps = {
         items: []
     }
 
     state = {
-        checkedArr: [],
         showList: false
-    }
-
-    addToCheckedArr = (item) => {
-        this.setState({checkedArr: [...this.state.checkedArr, item]})
-    }
-    
-    removeFromArr = (newItem) => {
-       const newArr = this.state.checkedArr.filter(item => {
-        if(item !== newItem) {
-            return item;
-        }
-       });
-
-       this.setState({checkedArr: newArr});
     }
 
     closeModal = () => {
@@ -49,6 +36,7 @@ export default class Select extends Component {
                 icon={{name: this.props.icon}}
                 />
                 <SelectModal
+                update={this.props.settingsUpdated}
                 options={this.props.options}
                 add={this.props.add}
                 remove={this.props.remove}
@@ -60,6 +48,8 @@ export default class Select extends Component {
         );
     }
 }
+
+export default connect(null, {settingsUpdated})(Select);
 
 const styles = {
     list: {
