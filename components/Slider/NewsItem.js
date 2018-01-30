@@ -9,16 +9,20 @@ import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colo
 export default class NewsItem extends Component {
     state = {
         size: new Animated.Value(),
+        scale: new Animated.Value(1),
         maxHeight: 0
     }
 
-
-
     resize = () => {
         this.state.size.setValue(this.state.maxHeight);
-        Animated.timing(this.state.size, {
-            toValue: 0
-        }).start(() => {
+        Animated.sequence([
+            Animated.spring(this.state.scale, {
+                toValue: 0
+            }),
+            Animated.timing(this.state.size, {
+                toValue: 0
+            })
+        ]).start(() => {
             this.props.banAction(this.props.source.name);
         });
     }
@@ -27,7 +31,6 @@ export default class NewsItem extends Component {
         this.setState({
             maxHeight: nativeEvent.layout.height
         });
-        console.log('event');
     }
 
     render () {
@@ -35,19 +38,23 @@ export default class NewsItem extends Component {
         return (
             <Animated.View style={[styles.container, {height: this.state.size}]}>
             <View style={styles.iconsRow}>
+            <Animated.View style={{transform:[{scale: this.state.scale}]}}>
             <Icon
-            containerStyle={styles.icon}
+            containerStyle={[styles.icon]}
             name='external-link'
             type='feather'
             color={colorGreyLight1}
             onPress={() => Linking.openURL(this.props.url)}
             />
+            </Animated.View>
+            <Animated.View style={{transform:[{scale: this.state.scale}]}}>
             <Icon
-            containerStyle={styles.icon}
+            containerStyle={[styles.icon]}
             name='close'
             color={colorGreyLight1}
             onPress={this.resize}
             />
+            </Animated.View>
             </View>
             
             <View onLayout={this.setMaxHeight}>
