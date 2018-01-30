@@ -12,7 +12,7 @@ import {settingsUpdated} from '../actions/SettingsActions';
 
 var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
-const language = ['ar', 'en', 'cn', 'de', 'es', 'fr', 'he', 'it', 'nl', 'no', 'pt', 'ru', 'se', 'ud'];
+
 const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
 
 
@@ -62,12 +62,6 @@ class WelcomeScreen extends Component{
                     icon='call-received'
                     />
 
-                    <Select
-                    style={{marginTop: 5, marginBottom: 10}}
-                    type='LANGUAGE'
-                    options={language}
-                    icon='web'
-                    />
 
                     <Select
                     add={this.props.addCountry}
@@ -80,7 +74,7 @@ class WelcomeScreen extends Component{
                     />
 
                     <Button 
-                    buttonStyle={{backgroundColor: colorGreyLight1}}
+                    buttonStyle={{backgroundColor: colorGreyLight1, borderRadius: 3}}
                     color={colorGreyDark1} 
                     icon={{name: 'check', color: colorGreyDark1}} 
                     title='DONE'
@@ -88,7 +82,7 @@ class WelcomeScreen extends Component{
                     />
                 </ScrollView>
 
-                
+                <Text style={{alignSelf: 'flex-end', color: colorGreyLight1, fontSize: 8}}>App was developed with newsapi.org</Text>
             </View>
         );
     }

@@ -17,7 +17,6 @@ export default class SelectItem extends Component {
         });
     }
 
-    //here add settings
     change = () => { 
         this.props.update(true);
 
@@ -34,13 +33,13 @@ export default class SelectItem extends Component {
         
         return (
             <CheckBox
-            uncheckedColor={colorGreyDark2}
-            textStyle={{color: colorGreyDark2}}
+            uncheckedColor={colorGreyLight1}
+            textStyle={{color: colorGreyLight1}}
             checkedColor={colorPrimaryDark}
             title={title}
             checked={this.state.checked}
             onPress={this.change}
-            containerStyle={{borderRadius: 0, backgroundColor: colorGreyLight1}}
+            containerStyle={{borderRadius: 0, backgroundColor: 'transparent', borderColor: 'transparent'}}
             />
         );
     }

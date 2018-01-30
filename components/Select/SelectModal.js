@@ -52,6 +52,7 @@ export default class SelectModal extends Component {
                         onPress={this.props.close} 
                         icon={{name: 'close', color: colorGreyLight1}} 
                         title='CLOSE'
+                        buttonStyle={{borderRadius: 3}}
                         containerViewStyle={{marginTop: 10}}
                         />
 

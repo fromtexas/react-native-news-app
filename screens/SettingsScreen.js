@@ -57,10 +57,11 @@ class SettingsScreen extends Component{
                 />
 
                 <Button 
-                buttonStyle={{backgroundColor: colorGreyLight1}}
+                buttonStyle={{backgroundColor: colorGreyLight1, borderRadius: 3}}
                 color={colorGreyDark1} 
                 icon={{name: 'check', color: colorGreyDark1}} 
                 title='DONE'
+                onPress={()=> this.props.navigation.navigate('news')}
                 />
 
                 </ScrollView>

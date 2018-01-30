@@ -1,24 +1,40 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Linking} from 'react-native';
+import {View, Text, Image, Linking, Animated} from 'react-native';
 import moment from 'moment';
 import {Icon} from 'react-native-elements';
 import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
 
+
+
 export default class NewsItem extends Component {
+    state = {
+        size: new Animated.Value(),
+        maxHeight: 0
+    }
+
+
+
+    resize = () => {
+        this.state.size.setValue(this.state.maxHeight);
+        Animated.timing(this.state.size, {
+            toValue: 0
+        }).start(() => {
+            this.props.banAction(this.props.source.name);
+        });
+    }
+
+    setMaxHeight = ({nativeEvent}) => {
+        this.setState({
+            maxHeight: nativeEvent.layout.height
+        });
+        console.log('event');
+    }
+
     render () {
+        
         return (
-            <View style={styles.container}>
-
-            <Image
-            source={require('../../assets/239H.png')}
-            style={{height: 200, width: '100%', marginBottom: 30}}
-            />
-
+            <Animated.View style={[styles.container, {height: this.state.size}]}>
             <View style={styles.iconsRow}>
-            {/* <Image 
-            source={{uri: this.props.urlToImage}}
-            style={styles.image}
-            /> */}
             <Icon
             containerStyle={styles.icon}
             name='external-link'
@@ -30,18 +46,18 @@ export default class NewsItem extends Component {
             containerStyle={styles.icon}
             name='close'
             color={colorGreyLight1}
-            onPress={()=> this.props.banAction(this.props.source.name)}
+            onPress={this.resize}
             />
             </View>
             
-            <View>
+            <View onLayout={this.setMaxHeight}>
             <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.description}>{this.props.description}</Text>
             <Text style={styles.author}>{this.props.author}</Text>
             <Text style={styles.publishedAt}>{moment.parseZone(this.props.publishedAt).fromNow()}</Text>
             <Text style={styles.name}>{this.props.source.name}</Text>
             </View>
-            </View>
+            </Animated.View>
         );
     }
 }
@@ -49,9 +65,7 @@ export default class NewsItem extends Component {
 const styles = {
     iconsRow: {
         flexDirection: 'row',
-        position: 'absolute',
-        width: '100%',
-        top: 170
+
     },
     icon: {
         width: 70,

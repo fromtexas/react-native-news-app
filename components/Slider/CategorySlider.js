@@ -72,7 +72,7 @@ export default class CategorySlider extends Component {
         return this.props.category.map((item) => {
             return (
                 <View style={styles.pageStyle} key={item}>
-                <View style={{height: 60, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>
+                <View style={{height: 75, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>
                 <Text style={styles.pageTitile}>{item.toUpperCase()}</Text>
                 </View>
                 <Animated.View 
@@ -110,7 +110,7 @@ export default class CategorySlider extends Component {
     move = (activeDot) => {
         Animated.spring(this.state.dotPosition, {
             toValue: {
-              x: 46*activeDot,
+              x: 25*activeDot,
               y: 0
             }
           }).start();
@@ -119,14 +119,14 @@ export default class CategorySlider extends Component {
     renderDotsRow = () => {
         return this.props.category.map((item, i) => {
             return (
-            <Icon
-            containerStyle={styles.dotHorizontal}
-            key={item} 
-            name='dot-single'
-            color={colorGreyLight1}
-            type='entypo'
-            size={46}
-            />
+                <View key={item} style={{
+                    height: 15,
+                    width: 15,
+                    borderRadius: 50,
+                    backgroundColor: colorGreyLight1,
+                    marginRight: 10
+                }}>   
+                </View>
             );
         });
     }
@@ -163,12 +163,6 @@ export default class CategorySlider extends Component {
             <Animated.View
             style={[this.state.dotPosition.getLayout(), styles.activeDot]}
             >
-            <Icon
-            name='dot-single'
-            color={colorPrimaryDark}
-            type='entypo'
-            size={46}
-            />
             </Animated.View>
             {this.renderDotsRow()}
             </View>
@@ -191,6 +185,10 @@ var styles = {
     activeDot:{
         position: 'absolute',
         zIndex: 100,
+        width: 15,
+        height: 15,
+        borderRadius: 50,
+        backgroundColor: colorPrimaryDark
     },
     viewPager: {
       height: SCREEN_HEIGHT,
@@ -241,7 +239,7 @@ var styles = {
     dotsRow: {
         position: 'absolute',
         top: 50,
-        left: 15,
+        left: 30,
         flexDirection: 'row'
     }
   }

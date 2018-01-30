@@ -32,7 +32,7 @@ class Select extends Component {
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 
                 title={this.props.type} 
-                buttonStyle={{backgroundColor: colorPrimaryLight}}
+                buttonStyle={{backgroundColor: colorPrimaryLight, borderRadius: 3}}
                 icon={{name: this.props.icon}}
                 />
                 <SelectModal
