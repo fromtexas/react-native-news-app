@@ -18,3 +18,18 @@ export const banFilter = (news, baned) => {
     return newsArr;
 
 };
+
+
+export const submit = (country, category, screen, callback) => {
+    if(!category && !country){
+        return screen.setState({warning: `Category and country can't be empty. Choose something.`});
+    }
+    if(!category){
+        return screen.setState({warning: `Category can't be empty. Choose something.`});
+    }
+    if(!country){
+        return screen.setState({warning: `Country can't be empty. Choose something.`});
+    }
+
+    callback('news');
+}

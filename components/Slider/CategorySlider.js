@@ -226,15 +226,19 @@ var styles = {
     },
     reload: {
         position: 'absolute',
-        top: 25,
+        top: 10,
         right: 60,
-        borderRadius: 50
+        borderRadius: 50,
+        width: 50,
+        height: 50
     },
     dots: {
         position: 'absolute',
-        top: 25,
+        top: 10,
         right: 20,
-        borderRadius: 50
+        borderRadius: 50,
+        width: 50,
+        height: 50
     },
     dotsRow: {
         position: 'absolute',

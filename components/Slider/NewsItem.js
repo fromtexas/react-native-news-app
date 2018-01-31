@@ -34,7 +34,7 @@ export default class NewsItem extends Component {
     }
 
     render () {
-        
+        //performance issues && works shitty
         return (
             <Animated.View style={[styles.container, {height: this.state.size}]}>
             <View style={styles.iconsRow}>

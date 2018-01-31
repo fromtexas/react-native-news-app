@@ -8,6 +8,7 @@ import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
 import {addCountry, removeCountry} from '../actions/CountryActions';
 import {settingsUpdated} from '../actions/SettingsActions';
+import {submit} from '../utils';
 
 
 var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
@@ -34,7 +35,8 @@ class WelcomeScreen extends Component{
     }
 
     state = {
-        activeScreen: false
+        activeScreen: false,
+        warning: ''
     }
 
     render () {
@@ -44,7 +46,7 @@ class WelcomeScreen extends Component{
                 <ScrollView>
                     <Text style={styles.screenTitle}>Vata news is welcome you, comrade!</Text>
                     <Text style={styles.screenParagraph}>Put your preferences here</Text>
-
+                    <Text style={styles.screenParagraph}>{this.state.warning}</Text>
                     <Icon
                     name='settings'
                     color={colorGreyLight1}
@@ -78,7 +80,7 @@ class WelcomeScreen extends Component{
                     color={colorGreyDark1} 
                     icon={{name: 'check', color: colorGreyDark1}} 
                     title='DONE'
-                    onPress={()=>this.props.navigation.navigate('news')}
+                    onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
                     />
                 </ScrollView>
 

@@ -4,9 +4,11 @@ import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
 import {addCountry, removeCountry} from '../actions/CountryActions';
-import {colorGreyDark1, colorGreyLight1} from '../assets/base';
+import {unbanResourse} from '../actions/ResourceActions';
+import {colorGreyDark1, colorGreyLight1, colorPrimary} from '../assets/base';
 import Select from '../components/Select/Select';
-
+import {submit} from '../utils';
+import BanedList from '../components/Baned/BanedList';
 
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
@@ -15,6 +17,9 @@ const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co
 
 class SettingsScreen extends Component{
     
+    state = {
+        warning: ''
+    }
     
     render () {
         return (
@@ -29,12 +34,19 @@ class SettingsScreen extends Component{
                 color={colorGreyLight1}
                 size={32}
                 containerStyle={{marginLeft:20, borderRadius: 50}}
-                onPress={()=> this.props.navigation.navigate('news')}
+                onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
                 />
                 <Text style={{color: colorGreyLight1, fontSize: 22, fontWeight: 'bold', paddingLeft: 20}}>Settings</Text>
-                </View>    
+                </View> 
+
+                <Text style={{textAlign: 'center', color: colorPrimary}}>{this.state.warning}</Text> 
 
                 <ScrollView>
+
+                <BanedList
+                unban={this.props.unbanResourse}
+                ban={this.props.ban} 
+                />
 
                 <Select
                 add={this.props.addCategory}
@@ -61,7 +73,7 @@ class SettingsScreen extends Component{
                 color={colorGreyDark1} 
                 icon={{name: 'check', color: colorGreyDark1}} 
                 title='DONE'
-                onPress={()=> this.props.navigation.navigate('news')}
+                onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
                 />
 
                 </ScrollView>
@@ -70,9 +82,10 @@ class SettingsScreen extends Component{
     }
 }
 
-const mapStateToProps = ({category, country}) => ({
+const mapStateToProps = ({category, country, ban}) => ({
     category,
-    country
+    country,
+    ban
 });
 
-export default connect(mapStateToProps, {addCategory, removeCategory, addCountry, removeCountry})(SettingsScreen);
+export default connect(mapStateToProps, {addCategory, removeCategory, addCountry, removeCountry, unbanResourse})(SettingsScreen);
