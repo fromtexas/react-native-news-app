@@ -235,7 +235,7 @@ var styles = {
     dots: {
         position: 'absolute',
         top: 10,
-        right: 20,
+        right: 15,
         borderRadius: 50,
         width: 50,
         height: 50

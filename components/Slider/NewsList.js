@@ -10,9 +10,10 @@ export default class NewsList extends Component {
 
     renderList = () => {
         const news = banFilter(this.props.news, this.props.baned);
+
         return news.map((item, index) => {
             return (
-                <NewsItem banAction={this.props.banAction} {...item} key={uuidv4()}/>
+                <NewsItem style={(news.length -1) === index? {marginBottom: 20}: {}} banAction={this.props.banAction} {...item} key={uuidv4()}/>
             );
         });
     }

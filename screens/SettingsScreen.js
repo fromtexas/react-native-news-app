@@ -43,11 +43,6 @@ class SettingsScreen extends Component{
 
                 <ScrollView>
 
-                <BanedList
-                unban={this.props.unbanResourse}
-                ban={this.props.ban} 
-                />
-
                 <Select
                 add={this.props.addCategory}
                 remove={this.props.removeCategory}
@@ -66,6 +61,11 @@ class SettingsScreen extends Component{
                 type='COUNTRY'
                 options={country}
                 icon='map'
+                />
+
+                <BanedList
+                unban={this.props.unbanResourse}
+                ban={this.props.ban} 
                 />
 
                 <Button 

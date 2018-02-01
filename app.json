@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "vata-news",
+    "name": "MehNews",
     "description": "This project is really great.",
-    "slug": "vata-news",
+    "slug": "MehNews",
     "privacy": "public",
     "sdkVersion": "24.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/meh_logo.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

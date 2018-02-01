@@ -34,7 +34,7 @@ export default class SelectItem extends Component {
         return (
             <CheckBox
             uncheckedColor={colorGreyLight1}
-            textStyle={{color: colorGreyLight1}}
+            textStyle={{color: colorGreyLight1, fontSize: 16, fontWeight: 'normal'}}
             checkedColor={colorPrimaryDark}
             title={title}
             checked={this.state.checked}

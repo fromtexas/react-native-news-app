@@ -8,7 +8,7 @@ import NewsScreen from './screens/NewsScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import NavigationStateNotifier from './utils/NavigationStateNotifier';
 
-//a8f31bc8eb22494a844c62dbc7b72b55 api key
+
 export default class App extends React.Component {
   render() {
     const MainNavigator = TabNavigator({

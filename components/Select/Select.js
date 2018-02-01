@@ -4,7 +4,7 @@ import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
 import SelectedList from './SelectedList';
 import SelectModal from './SelectModal';
-import {colorPrimaryLight} from '../../assets/base';
+import {colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
 import {connect} from 'react-redux';
 import {settingsUpdated} from '../../actions/SettingsActions';
 
@@ -32,7 +32,7 @@ class Select extends Component {
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 
                 title={this.props.type} 
-                buttonStyle={{backgroundColor: colorPrimaryLight, borderRadius: 3}}
+                buttonStyle={{backgroundColor: colorPrimaryDark, borderRadius: 3}}
                 icon={{name: this.props.icon}}
                 />
                 <SelectModal

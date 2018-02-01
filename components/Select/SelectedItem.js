@@ -49,6 +49,6 @@ const styles = {
         marginLeft: 10,
         marginRight: -0.3,
         borderRadius: 50,
-        backgroundColor: colorPrimary
+        backgroundColor: colorPrimaryDark
     }
 }
