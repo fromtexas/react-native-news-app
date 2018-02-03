@@ -76,14 +76,20 @@ export default class CategorySlider extends Component {
                 <Text style={styles.pageTitile}>{item.toUpperCase()}</Text>
                 </View>
                 <Animated.View 
-                style={[this.state.imagePosition.getLayout(), {flex: 1, position: 'absolute', width: '100%', height: '100%', zIndex: 5, backgroundColor: colorGreyDark1}]}
+                style={[
+                    this.state.imagePosition.getLayout(), 
+                    {flex: 1, position: 'absolute', width: '100%', height: '100%', zIndex: 5, backgroundColor: colorGreyDark1}
+                ]}
                 {...this.state.panResponder.panHandlers}
                 >
+                
                 <Image
                 ref='blurImage'
                 source={{uri: this.props.news[item][0].urlToImage}}
                 style={[styles.image]}
                 />
+                {/* <View style={{flex: 1, position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(51, 51, 51, 0.2)'}}/> */}
+
                 <Animated.View style={{padding: 35, flex: 1, justifyContent: 'flex-end', transform: [{scale: this.state.scale}]}}>             
                 <View>
                 <View style={{width: 5, height: '90%', position: 'absolute', left: -10, backgroundColor: colorPrimaryLight}}></View>
