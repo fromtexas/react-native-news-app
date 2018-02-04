@@ -1,28 +1,57 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Animated, Dimensions} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {colorPrimary, colorPrimaryDark, colorGreyDark2, colorGreyLight1, colorGreyDark1} from '../../assets/base';
 
 export default class SelectedItem extends Component {
 
+    state = {
+        close: new Animated.ValueXY(0,0),
+        scale: new Animated.Value(0)
+    }
+
     remove = (item) => {
         return () => {
-            this.props.remove(item);
-        };
+            Animated.spring(this.state.close, {
+                toValue:{
+                    x: Dimensions.get('window').width,
+                    y: 0
+                }
+            }).start(() => this.props.remove(item));
+        } 
+    }
+
+    close = (item) => {
+        return () => {
+            Animated.spring(this.state.scale, {
+                toValue: 0
+            }).start(() => this.props.remove(item));
+        }
+    }
+
+    open = () => {
+        Animated.spring(this.state.scale, {
+            toValue: 1
+        }).start();
+    }
+
+    getSize = ({nativeEvent}) => {
+        const {width} = nativeEvent.layout;
+        this.state.close.setValue(width);
     }
 
     render () {
         const title = this.props.item.charAt(0).toUpperCase() + this.props.item.slice(1);
         return (
-            <View style={styles.container}>
+            <Animated.View onLayout={this.open} style={[styles.container, {transform: [{scale: this.state.scale}]}]}>
                 <Text style={styles.text}>{title}</Text>
                 <Icon
                 name='close'
                 color='#fff'
                 containerStyle={styles.iconContainer}
-                onPress={this.remove(this.props.item)}
+                onPress={this.close(this.props.item)}
                 />
-            </View>
+            </Animated.View>
         );
     }
 }
@@ -46,8 +75,8 @@ const styles = {
     iconContainer: {
         height: 30,
         width: 30,
-        marginLeft: 10,
-        marginRight: -0.3,
+        // marginLeft: 10,
+        // marginRight: -0.3,
         borderRadius: 50,
         backgroundColor: colorPrimaryDark
     }

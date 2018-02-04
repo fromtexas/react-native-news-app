@@ -88,9 +88,9 @@ export default class CategorySlider extends Component {
                 source={{uri: this.props.news[item][0].urlToImage}}
                 style={[styles.image]}
                 />
-                {/* <View style={{flex: 1, position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(51, 51, 51, 0.2)'}}/> */}
+                <View style={{flex: 1, position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(51, 51, 51, 0.5)', zIndex: 2}}/>
 
-                <Animated.View style={{padding: 35, flex: 1, justifyContent: 'flex-end', transform: [{scale: this.state.scale}]}}>             
+                <Animated.View style={{zIndex: 3, padding: 35, flex: 1, justifyContent: 'flex-end', transform: [{scale: this.state.scale}]}}>             
                 <View>
                 <View style={{width: 5, height: '90%', position: 'absolute', left: -10, backgroundColor: colorPrimaryLight}}></View>
                 <Text style={styles.itemSource}>{this.props.news[item][0].source.name}</Text>
