@@ -7,9 +7,19 @@ import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colo
 
 
 export default class NewsItem extends Component {
+    state = {
+        close: new Animated.Value(1)
+    }
+
+    banItem = () => {
+        Animated.spring(this.state.close, {
+            toValue: 0
+        }).start(() => this.props.banAction(this.props.source.name));
+    }
+
     render () {
         return (
-            <View style={[styles.container, this.props.style]}>
+            <Animated.View style={[styles.container, this.props.style, {transform: [{scale: this.state.close}]}]}>
             <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.description}>{this.props.description}</Text>
             <Text style={styles.author}>{this.props.author}</Text>
@@ -28,10 +38,10 @@ export default class NewsItem extends Component {
             containerStyle={[styles.icon]}
             name='close'
             color={colorGreyDark3}
-            onPress={()=> this.props.banAction(this.props.source.name)}
+            onPress={this.banItem}
             />
             </View>
-            </View>
+            </Animated.View>
         );
     }
 }

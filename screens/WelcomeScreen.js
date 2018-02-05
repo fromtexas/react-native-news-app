@@ -41,20 +41,21 @@ class WelcomeScreen extends Component{
         return (
             <View style={styles.screenContainer}>
             <ViewPagerContainer style={{flex: 1}}>
-            <ViewPagerAndroid style={styles.viewPager}>
+            <ViewPagerAndroid ref='pages' style={styles.viewPager}>
 
             <View style={{flex: 1}} key='1'>
             <Image
-            style={{width: 200, height: 200, alignSelf: 'center'}}
-            source={require('../assets/meh_logo.png')}
+            style={{width: 300, height: 300, alignSelf: 'center'}}
+            source={require('../assets/meh_img.png')}
             />
             <Text style={styles.screenTitle}>Get breaking news headlines with short description filtered by your interests and country preferences.</Text>
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
             <Button
             large
-            icon={{name: 'cached'}} 
+            iconRight={{name: 'arrow-forward'}}
             title='NEXT'
             buttonStyle={{backgroundColor: colorPrimary, borderRadius: 3}}
+            onPress={() => this.refs.pages.setPage(1)}
             />
             </View>
             </View>
@@ -66,7 +67,7 @@ class WelcomeScreen extends Component{
                 <Icon
                 name='settings'
                 color={colorGreyLight1}
-                size={40}
+                size={48}
                 containerStyle={styles.iconContainer}
                 />
 
@@ -144,16 +145,8 @@ const styles = {
     },
     iconContainer: {
         alignSelf: 'center',
-        paddingTop: 10
+        paddingTop: 10,
+        paddingBottom: 10
     }
 }
 
-
-
-
-{/* <View style={[styles.screenContainer, {backgroundColor: colorGreyLight1}]}>
-<Image
-source={require('../assets/meh_logo.png')}
-/>
-<Text style={styles.screenTitle}>Get breaking news headlines with short description filtered by your interests and country preferences.</Text>
-</View> */}

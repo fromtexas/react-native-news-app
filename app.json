@@ -10,9 +10,9 @@
     "orientation": "portrait",
     "icon": "./assets/meh_logo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_meh.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#333333"
     },
     "ios": {
       "supportsTablet": true
