@@ -40,6 +40,10 @@ You need [Expo](https://expo.io/) pre-installed and you’re good to go.
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
+## Improve
+Feedback is more than appreciated [Oleg](https://github.com/fromtexas).
+You are 100% allowed to use this app for both personal and commercial use, but not claim it as your own. A credit to the original author is of course highly appreciated!
+
 ## License
 
 This project is licensed under the MIT License.
