@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {FETCH_NEWS} from './types';
-import qs from 'qs';
+
 
 
 const API_KEY = 'apiKey=a8f31bc8eb22494a844c62dbc7b72b55';
@@ -10,7 +10,6 @@ const URL = 'https://newsapi.org/v2/top-headlines?';
 export const fetchNews = () => async (dispatch, getState) => {
   const category = getState().category;
   const country = getState().country;
-  console.log(category, country);
   let categoryArr = {};
 
   for(let i = 0; i < category.length; i++){
@@ -31,7 +30,6 @@ export const fetchNews = () => async (dispatch, getState) => {
 
   dispatch({type: FETCH_NEWS, payload: categoryArr});
 
-  console.log(categoryArr);
 };
 
 
