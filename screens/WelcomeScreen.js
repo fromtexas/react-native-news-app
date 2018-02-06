@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, StatusBar, ViewPagerAndroid, Dimensions, Image} from 'react-native';
+import {View, Text, ScrollView, StatusBar, ViewPagerAndroid, Dimensions, Image, AsyncStorage} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {colorGreyDark1, colorGreyLight1, colorGreyLight2, colorGreyDark3, colorPrimary} from '../assets/base';
@@ -34,6 +34,17 @@ class WelcomeScreen extends Component{
     state = {
         activeScreen: false,
         warning: ''
+    }
+
+    componentWillMount = async () => {
+
+        let root = await AsyncStorage.getAllKeys();
+
+        const category = this.props.category.length;
+        const country = this.props.country.length;
+        if( category && country && root ){
+            this.props.navigation.navigate('news');
+        }
     }
 
     render () {

@@ -10,7 +10,7 @@ const URL = 'https://newsapi.org/v2/top-headlines?';
 export const fetchNews = () => async (dispatch, getState) => {
   const category = getState().category;
   const country = getState().country;
-  console.log(country);
+  console.log(category, country);
   let categoryArr = {};
 
   for(let i = 0; i < category.length; i++){

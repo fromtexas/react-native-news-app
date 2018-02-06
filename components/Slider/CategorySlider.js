@@ -191,10 +191,13 @@ var styles = {
     activeDot:{
         position: 'absolute',
         zIndex: 100,
-        width: 15,
-        height: 15,
+        width: 16,
+        height: 16,
         borderRadius: 50,
-        backgroundColor: colorPrimaryDark
+        backgroundColor: colorPrimaryDark,
+        elevation: 5,
+        opacity: 0.9,
+        transform: [{translateY: -0.5}, {translateX: -0.5}]
     },
     viewPager: {
       height: SCREEN_HEIGHT,

@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {View, Text, Button, StatusBar, ActivityIndicator} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
-import {activeCategory} from '../actions/ActiveCategory';
 import {settingsUpdated} from '../actions/SettingsActions';
 import {banResourse} from '../actions/ResourceActions';
 import {connect} from 'react-redux';

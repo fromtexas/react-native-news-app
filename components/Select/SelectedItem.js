@@ -75,9 +75,10 @@ const styles = {
     iconContainer: {
         height: 30,
         width: 30,
-        // marginLeft: 10,
-        // marginRight: -0.3,
+        marginLeft: 10,
         borderRadius: 50,
-        backgroundColor: colorPrimaryDark
+        backgroundColor: colorPrimaryDark,
+        elevation: 3,
+        transform: [{translateX: 0.3}]
     }
 }
