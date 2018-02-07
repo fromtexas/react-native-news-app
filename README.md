@@ -26,6 +26,7 @@ You need [Expo](https://expo.io/) pre-installed and you’re good to go.
 * [redux-persist](https://github.com/rt2zz/redux-persist)
 * [expo](https://expo.io/)
 * [react-navigation](https://github.com/react-navigation/react-navigation)
+* [newsapi](https://newsapi.org/)
 * other stuff...
 
 ## Authors
