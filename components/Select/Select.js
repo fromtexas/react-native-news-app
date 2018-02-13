@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, SectionList} from 'react-native';
 import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
@@ -8,7 +8,7 @@ import {colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
 import {connect} from 'react-redux';
 import {settingsUpdated} from '../../actions/SettingsActions';
 
-class Select extends Component {
+class Select extends PureComponent {
 
     static defaultProps = {
         items: []

@@ -18,8 +18,22 @@ export default class NewsList extends Component {
         });
     }
 
+    // news = banFilter(this.props.news, this.props.baned)
+
+    // keyExtractor = (item, index) => uuidv4()
+
+    // renderItem = ({item, index}) => {
+    //     return <NewsItem style={(this.news.length -1) === index? {marginBottom: 20}: {}} banAction={this.props.banAction} {...item}/>
+    // }
+        
     render () {
         return (
+            // <FlatList
+            // style={{backgroundColor: colorGreyDark1}}
+            // date={this.news}
+            // keyExtractor={this.keyExtractor}
+            // renderItem={this.renderItem}
+            // />
             <ScrollView style={{backgroundColor: colorGreyDark1}}>
                 {this.renderList()}
             </ScrollView>

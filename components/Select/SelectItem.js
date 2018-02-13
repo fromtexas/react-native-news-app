@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View} from 'react-native';
 import {CheckBox} from 'react-native-elements';
 import {colorPrimaryDark, colorGreyDark2, colorGreyLight1} from '../../assets/base';
 
-export default class SelectItem extends Component {
+export default class SelectItem extends PureComponent {
     state = {
         checked: false
     }
