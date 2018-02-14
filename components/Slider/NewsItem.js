@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, Image, Linking, Animated} from 'react-native';
 import moment from 'moment';
 import {Icon} from 'react-native-elements';
@@ -6,7 +6,7 @@ import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colo
 
 
 
-export default class NewsItem extends Component {
+export default class NewsItem extends PureComponent {
     state = {
         close: new Animated.Value(1)
     }
