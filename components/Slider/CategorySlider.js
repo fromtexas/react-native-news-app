@@ -122,6 +122,12 @@ export default class CategorySlider extends Component {
           }).start();
     }
 
+    fetchFreshNews = async () => {
+        this.props.preloader(true);
+        await this.props.reload();
+        this.props.preloader(false);
+    }
+
     renderDotsRow = () => {
         return this.props.category.map((item, i) => {
             return (
@@ -156,7 +162,7 @@ export default class CategorySlider extends Component {
             containerStyle={styles.reload}
             name='update'
             color={colorGreyLight1}
-            onPress={() => this.props.reload()}
+            onPress={this.fetchFreshNews}
             />
             <Icon 
             containerStyle={styles.dots}

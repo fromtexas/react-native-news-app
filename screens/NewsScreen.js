@@ -32,11 +32,11 @@ class NewsScreen extends PureComponent{
     
     componentWillReceiveProps () {
         this.setState((prevState, props)=>{
-            if(props.settings){
-                return {
-                    activeScreen: false
-                };
-            }   
+            return {
+                activeScreen: !props.settings
+            };
+            // if(props.settings){
+            // }   
         });
     }
 
@@ -54,6 +54,7 @@ class NewsScreen extends PureComponent{
                 category={this.props.category}
                 navigation={this.props.navigation.navigate}
                 reload={this.props.fetchNews}
+                preloader={this.props.settingsUpdated}
                 />
             </View>
             );

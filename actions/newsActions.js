@@ -26,8 +26,7 @@ export const fetchNews = () => async (dispatch, getState) => {
     }
   
   }
-
-
+  
   dispatch({type: FETCH_NEWS, payload: categoryArr});
 
 };
