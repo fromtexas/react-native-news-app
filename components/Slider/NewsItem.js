@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
-import {View, Text, Image, Linking, Animated} from 'react-native';
+import {View, Text, Linking, Animated} from 'react-native';
 import moment from 'moment';
 import {Icon} from 'react-native-elements';
-import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark, colorGreyDark3} from '../../assets/base';
+import {colorGreyDark1, colorGreyLight1, colorPrimaryLight, colorGreyDark3} from '../../assets/base';
 
 
 

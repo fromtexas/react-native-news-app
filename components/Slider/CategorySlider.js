@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import {ViewPagerAndroid, View, Animated, Dimensions} from 'react-native';
+import {ViewPagerAndroid, View, Dimensions} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
+import {colorGreyLight1} from '../../assets/base';
 
 import CategoryItem from './CategoryItem';
+import DotsRow from './DotsRow';
 
 
  const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 
 export default class CategorySlider extends Component {
-
-    state = {
-        activeDot: 0 ,
-        dotPosition: new Animated.ValueXY(0,0),
-    }
 
     renderCategories = () => {
         const {category, banAction, baned, news} = this.props;
@@ -34,43 +30,17 @@ export default class CategorySlider extends Component {
         });
     }
 
-    move = (activeDot) => {
-        Animated.spring(this.state.dotPosition, {
-            toValue: {
-              x: 25*activeDot,
-              y: 0
-            }
-          }).start();
-    }
-
     fetchFreshNews = async () => {
         this.props.preloader(true);
         await this.props.reload();
         this.props.preloader(false);
     }
 
-    renderDotsRow = () => {
-        return this.props.category.map((item, i) => {
-            return (
-                <View key={item} style={{
-                    height: 15,
-                    width: 15,
-                    borderRadius: 50,
-                    backgroundColor: colorGreyLight1,
-                    marginRight: 10
-                }}>   
-                </View>
-            );
-        });
-    }
-
-
     getIndex = ({nativeEvent}) => {
-        this.move(nativeEvent.position);
+        this.dotsRow.move(nativeEvent.position);
     }
 
     render () {
-        
         return (
             <View>
             <ViewPagerAndroid
@@ -92,30 +62,13 @@ export default class CategorySlider extends Component {
             type='entypo'
             onPress={() => this.props.navigation('settings')}
             />
-            <View style={styles.dotsRow}>
-            <Animated.View
-            style={[this.state.dotPosition.getLayout(), styles.activeDot]}
-            >
-            </Animated.View>
-            {this.renderDotsRow()}
-            </View>
+            <DotsRow ref={instance => { this.dotsRow = instance }} category = {this.props.category}/>
             </View>
         );
     }
 }
 
 var styles = {
-    activeDot:{
-        position: 'absolute',
-        zIndex: 100,
-        width: 16,
-        height: 16,
-        borderRadius: 50,
-        backgroundColor: colorPrimaryDark,
-        elevation: 5,
-        opacity: 0.9,
-        transform: [{translateY: -0.5}, {translateX: -0.5}]
-    },
     viewPager: {
       height: SCREEN_HEIGHT,
     },
@@ -134,11 +87,5 @@ var styles = {
         borderRadius: 50,
         width: 50,
         height: 50
-    },
-    dotsRow: {
-        position: 'absolute',
-        top: 50,
-        left: 30,
-        flexDirection: 'row'
     }
   }

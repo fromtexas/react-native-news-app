@@ -1,10 +1,9 @@
 import React, {PureComponent} from 'react';
-import {View, Text, SectionList} from 'react-native';
+import {View} from 'react-native';
 import {Button} from 'react-native-elements';
-import SelectItem from './SelectItem';
 import SelectedList from './SelectedList';
 import SelectModal from './SelectModal';
-import {colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
+import {colorPrimaryDark} from '../../assets/base';
 import {connect} from 'react-redux';
 import {settingsUpdated} from '../../actions/SettingsActions';
 
@@ -50,9 +49,3 @@ class Select extends PureComponent {
 }
 
 export default connect(null, {settingsUpdated})(Select);
-
-const styles = {
-    list: {
-        marginTop: 10
-    }
-}

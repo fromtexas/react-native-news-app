@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView} from 'react-native';
 import NewsItem from './NewsItem';
-import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
+import {colorGreyDark1} from '../../assets/base';
 import {banFilter} from '../../utils';
 import uuidv4 from 'uuid/v4';
 

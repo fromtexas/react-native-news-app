@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Modal, ScrollView, FlatList} from 'react-native';
+import {View, Modal, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
 import {colorGreyLight1, colorPrimaryLight} from '../../assets/base';

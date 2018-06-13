@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {TabNavigator, StackNavigator} from 'react-navigation';
+import {TabNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 import store from './store';
 import WelcomeScreen from './screens/WelcomeScreen';

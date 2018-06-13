@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {View, Text, Animated, Dimensions, Image, PanResponder} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {colorGreyDark1, colorGreyLight1, colorGreyDark2, colorPrimaryLight, colorPrimaryDark} from '../../assets/base';
+import {colorGreyDark1, colorGreyLight1, colorPrimaryLight} from '../../assets/base';
 import moment from 'moment';
 import NewsList from './NewsList';
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {colorPrimary, colorPrimaryDark, colorGreyDark2, colorGreyLight1, colorGreyDark1} from '../../assets/base';
+import {colorPrimary, colorGreyLight1, colorGreyDark1} from '../../assets/base';
 
 export default class BanedItem extends Component{
     render () {

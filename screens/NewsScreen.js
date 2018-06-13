@@ -9,7 +9,6 @@ import CategorySlider from '../components/Slider/CategorySlider';
 import {colorPrimaryDark, colorGreyDark1} from '../assets/base';
 
 
-
 class NewsScreen extends PureComponent{
     constructor (props) {
         super(props);
@@ -23,7 +22,6 @@ class NewsScreen extends PureComponent{
         };
 
         const onExit = () => {
-            //this.setState({activeScreen: false});
         };
 
         NavigationStateNotifier.newListener(this, onEnter, onExit);
@@ -34,9 +32,7 @@ class NewsScreen extends PureComponent{
         this.setState((prevState, props)=>{
             return {
                 activeScreen: !props.settings
-            };
-            // if(props.settings){
-            // }   
+            };  
         });
     }
 
