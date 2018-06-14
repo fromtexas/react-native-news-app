@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, ScrollView, StatusBar, ViewPagerAndroid, Dimensions, Image, AsyncStorage} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
-import {colorGreyDark1, colorGreyLight1, colorGreyLight2, colorGreyDark3, colorPrimary} from '../assets/base';
+import {colorGreyDark1, colorGreyLight1, colorPrimary} from '../assets/base';
 import Select from '../components/Select/Select';
 import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
@@ -15,9 +15,8 @@ import ViewPagerContainer from '../components/ViewPagerContainer';
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 
 const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
-const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-class WelcomeScreen extends Component{
+class WelcomeScreen extends PureComponent{
     constructor (props) {
         super(props);
         const onEnter = () => {

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {ViewPagerAndroid, View, Dimensions} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {colorGreyLight1} from '../../assets/base';
@@ -7,10 +7,10 @@ import CategoryItem from './CategoryItem';
 import DotsRow from './DotsRow';
 
 
- const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 
-export default class CategorySlider extends Component {
+export default class CategorySlider extends PureComponent {
 
     renderCategories = () => {
         const {category, banAction, baned, news} = this.props;

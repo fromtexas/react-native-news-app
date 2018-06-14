@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View} from 'react-native';
 import SelectedItem from './SelectedItem';
 
-export default class SelectList extends Component{
+export default class SelectList extends PureComponent{
     renderSelectedList = () => {
         return this.props.selected.map((item,index) => {
             return <SelectedItem remove={this.props.remove} key={index} item={item}/>

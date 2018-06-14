@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {ScrollView} from 'react-native';
 import NewsItem from './NewsItem';
 import {colorGreyDark1} from '../../assets/base';
@@ -6,7 +6,7 @@ import {banFilter} from '../../utils';
 import uuidv4 from 'uuid/v4';
 
 
-export default class NewsList extends Component {
+export default class NewsList extends PureComponent {
 
     renderList = () => {
         const news = banFilter(this.props.news, this.props.baned);
@@ -18,10 +18,8 @@ export default class NewsList extends Component {
         });
     }
 
-        
     render () {
         return (
-
             <ScrollView style={{backgroundColor: colorGreyDark1}}>
                 {this.renderList()}
             </ScrollView>

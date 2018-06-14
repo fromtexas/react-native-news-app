@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, StatusBar, ScrollView} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
@@ -15,7 +15,7 @@ const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co
 
 
 
-class SettingsScreen extends Component{
+class SettingsScreen extends PureComponent{
     
     state = {
         warning: ''

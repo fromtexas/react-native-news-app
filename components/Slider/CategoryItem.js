@@ -68,7 +68,7 @@ export default class CategoryItem extends PureComponent {
 
     render () {
         return (
-            <View >
+            <View style={{flex: 1}}>
             <View style={{height: 75, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>
             <Text style={styles.pageTitile}>{this.props.item.toUpperCase()}</Text>
             </View>

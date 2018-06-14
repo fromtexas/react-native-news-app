@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Modal, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
 import {colorGreyLight1, colorPrimaryLight} from '../../assets/base';
 
-export default class SelectModal extends Component {
+export default class SelectModal extends PureComponent {
     
     keyExtractor = (item, index) => item
 

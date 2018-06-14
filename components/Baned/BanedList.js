@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text} from 'react-native';
 import BanedItem from './BanedItem';
 import {colorGreyLight1} from '../../assets/base';
 
-export default class BanedList extends Component {
+export default class BanedList extends PureComponent {
 
     renderList = () => {
         return this.props.ban.map((item) => {

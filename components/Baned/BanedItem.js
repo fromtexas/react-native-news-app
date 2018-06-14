@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {colorPrimary, colorGreyLight1, colorGreyDark1} from '../../assets/base';
 
-export default class BanedItem extends Component{
+export default class BanedItem extends PureComponent{
     render () {
         return (
             <View style={styles.container}>

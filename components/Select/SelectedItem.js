@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {View, Text, Animated, Dimensions} from 'react-native';
+import React, {PureComponent} from 'react';
+import {Text, Animated, Dimensions} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {colorPrimary, colorPrimaryDark, colorGreyDark2, colorGreyLight1, colorGreyDark1} from '../../assets/base';
+import {colorPrimaryDark, colorGreyLight1, colorGreyDark1} from '../../assets/base';
 
-export default class SelectedItem extends Component {
+export default class SelectedItem extends PureComponent {
 
     state = {
         close: new Animated.ValueXY(0,0),
