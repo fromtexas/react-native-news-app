@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, Text, ScrollView, StatusBar, ViewPagerAndroid, Dimensions, Image, AsyncStorage} from 'react-native';
+import {View, Text, ScrollView, StatusBar, ViewPagerAndroid, Image, AsyncStorage} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {colorGreyDark1, colorGreyLight1, colorPrimary} from '../assets/base';
@@ -47,7 +47,6 @@ class WelcomeScreen extends PureComponent{
     }
 
     render () {
-
         return (
             <View style={styles.screenContainer}>
             <ViewPagerContainer style={{flex: 1}}>

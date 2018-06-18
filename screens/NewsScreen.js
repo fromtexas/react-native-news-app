@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react';
-import {View, Text, Button, StatusBar, ActivityIndicator} from 'react-native';
+import React, {Component} from 'react';
+import {View, StatusBar, ActivityIndicator} from 'react-native';
 import {fetchNews} from '../actions/NewsActions';
 import {settingsUpdated} from '../actions/SettingsActions';
 import {banResourse} from '../actions/ResourceActions';
@@ -9,7 +9,7 @@ import CategorySlider from '../components/Slider/CategorySlider';
 import {colorPrimaryDark, colorGreyDark1} from '../assets/base';
 
 
-class NewsScreen extends PureComponent{
+class NewsScreen extends Component{
     constructor (props) {
         super(props);
         const onEnter = async () => {
@@ -28,12 +28,21 @@ class NewsScreen extends PureComponent{
         
     }
     
-    componentWillReceiveProps () {
-        this.setState((prevState, props)=>{
-            return {
-                activeScreen: !props.settings
-            };  
-        });
+    componentWillReceiveProps (props) {
+        if(props.settings !== this.props.settings){
+            this.setState((prevState, props)=>{
+                return {
+                    activeScreen: !props.settings
+                };  
+            });
+        }
+    }
+
+    shouldComponentUpdate (nextProps) {
+        if(nextProps.settings === this.props.settings){
+            return false;
+        } 
+        return true;
     }
 
     state = {
@@ -64,6 +73,7 @@ class NewsScreen extends PureComponent{
     }
 
     render () {
+        console.log('re');
         return this.renderScreen();
     }
 }

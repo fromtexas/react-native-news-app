@@ -67,6 +67,7 @@ export default class CategoryItem extends PureComponent {
 
 
     render () {
+        //console.log('re');
         return (
             <View style={{flex: 1}}>
             <View style={{height: 75, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>

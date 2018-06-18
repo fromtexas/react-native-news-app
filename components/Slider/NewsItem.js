@@ -1,4 +1,5 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {View, Text, Linking, Animated} from 'react-native';
 import moment from 'moment';
 import {Icon} from 'react-native-elements';
@@ -6,18 +7,58 @@ import {colorGreyDark1, colorGreyLight1, colorPrimaryLight, colorGreyDark3} from
 
 
 
-export default class NewsItem extends PureComponent {
+class NewsItem extends Component {
     state = {
-        close: new Animated.Value(1)
+        close: new Animated.Value(1),
+        baned: false
     }
 
     banItem = () => {
-        Animated.spring(this.state.close, {
-            toValue: 0
-        }).start(() => this.props.banAction(this.props.source.name));
+        // Animated.spring(this.state.close, {
+        //     toValue: 0
+        // }).start(() => this.props.banAction(this.props.source.name));
+        this.props.banAction(this.props.source.name)
+    }
+
+    componentWillMount () {
+        this.ban(this.props.ban);
+    }
+
+    componentWillReceiveProps (nextProps){
+        this.ban(nextProps.ban);
+    }
+
+    shouldComponentUpdate (nextProps){
+        if(nextProps.ban.length > this.props.ban.length && this.state.baned === false){
+            return true;
+        }
+        else if(nextProps.ban.length < this.props.ban.length && this.state.baned === true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    ban = (banlist) => {
+        banlist.forEach(item => {
+            if(item === this.props.source.name){
+                this.setState({
+                    baned: true
+                });
+            }
+            else if(item !== this.props.source.name && this.state.baned !== false){
+                this.setState({
+                    baned: false
+                });
+            }
+        });
     }
 
     render () {
+        if(this.state.baned){
+            return null;
+        }
         return (
             <Animated.View style={[styles.container, this.props.style, {transform: [{scale: this.state.close}]}]}>
             <Text style={styles.title}>{this.props.title}</Text>
@@ -45,6 +86,12 @@ export default class NewsItem extends PureComponent {
         );
     }
 }
+
+const mapStateToProps = ({ban}) => ({
+    ban
+});
+
+export default connect(mapStateToProps)(NewsItem);
 
 const styles = {
     container: {

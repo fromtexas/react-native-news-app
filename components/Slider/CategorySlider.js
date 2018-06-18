@@ -41,6 +41,7 @@ export default class CategorySlider extends PureComponent {
     }
 
     render () {
+
         return (
             <View>
             <ViewPagerAndroid
