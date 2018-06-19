@@ -29,30 +29,31 @@ class NewsItem extends Component {
     }
 
     shouldComponentUpdate (nextProps){
-        if(nextProps.ban.length > this.props.ban.length && this.state.baned === false){
+
+        if(nextProps.ban[this.props.source.name] && !this.state.baned){
             return true;
         }
-        else if(nextProps.ban.length < this.props.ban.length && this.state.baned === true){
+        else if(!nextProps.ban[this.props.source.name] && this.state.baned){
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
 
     ban = (banlist) => {
-        banlist.forEach(item => {
-            if(item === this.props.source.name){
-                this.setState({
-                    baned: true
-                });
-            }
-            else if(item !== this.props.source.name && this.state.baned !== false){
-                this.setState({
-                    baned: false
-                });
-            }
-        });
+
+        if(banlist[this.props.source.name]){
+            this.setState({
+                baned: true
+            });
+        }
+
+        if(!banlist[this.props.source.name] && this.state.baned !== false){
+            this.setState({
+                baned: false
+            });
+        }
     }
 
     render () {

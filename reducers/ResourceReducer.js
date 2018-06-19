@@ -1,15 +1,15 @@
 import {BAN_RESOURCE, UNBAN_RESOURCE} from '../actions/types';
 
-export default (state=[], action) => {
+export default (state={}, action) => {
     switch (action.type) {
         case BAN_RESOURCE:
-            return [...state, action.payload];
+            const stCopy = {...state};
+            stCopy[action.payload] = true;
+            return stCopy;
         case UNBAN_RESOURCE: 
-            return state.filter((item) => {
-                if(item !== action.payload){
-                    return item;
-                }
-            })
+            const stateCopy = {...state};
+            delete stateCopy[action.payload];
+            return stateCopy; 
         default:
             return state;
     }

@@ -73,7 +73,6 @@ class NewsScreen extends Component{
     }
 
     render () {
-        console.log('re');
         return this.renderScreen();
     }
 }

@@ -6,7 +6,8 @@ import {colorGreyLight1} from '../../assets/base';
 export default class BanedList extends PureComponent {
 
     renderList = () => {
-        return this.props.ban.map((item) => {
+        const banedKeys = Object.keys(this.props.ban);
+        return banedKeys.map(item => {
             return <BanedItem unban={this.props.unban} title={item} key={item}/>;
         });
     }
