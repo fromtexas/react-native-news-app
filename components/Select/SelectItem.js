@@ -9,11 +9,10 @@ export default class SelectItem extends PureComponent {
 
     //temporary
     componentDidMount () {
-        this.props.options.forEach(item => {
-            if(item === this.props.item){
-                this.setState({checked: true})
-            }
-        });
+        const index = this.props.options.findIndex(item => item === this.props.item);
+        if(index > -1){
+            this.setState({checked: true})
+        }
     }
 
     change = () => { 

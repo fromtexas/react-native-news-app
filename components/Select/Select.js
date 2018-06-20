@@ -27,6 +27,7 @@ class Select extends PureComponent {
                 <SelectedList
                 selected={this.props.items}
                 remove={this.props.remove}
+                update={this.props.settingsUpdated}
                 />
                 <Button 
                 onPress={() => {this.setState({showList: !this.state.showList})}} 

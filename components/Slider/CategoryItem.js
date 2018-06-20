@@ -67,6 +67,12 @@ export default class CategoryItem extends PureComponent {
 
 
     render () {
+        const splash = this.props.news[this.props.item].find(item => {
+            if(!this.props.baned[item.source.name]){
+                return item;
+            }
+        });
+
         return (
             <View style={{flex: 1}}>
             <View style={{height: 75, backgroundColor: 'transparent', zIndex: 9, paddingBottom: 60}}>
@@ -82,7 +88,7 @@ export default class CategoryItem extends PureComponent {
             
             <Image
             ref='blurImage'
-            source={{uri: this.props.news[this.props.item][0].urlToImage}}
+            source={{uri: splash.urlToImage}}
             style={[styles.image]}
             />
             <View style={{flex: 1, position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(51, 51, 51, 0.5)', zIndex: 2}}/>
@@ -90,9 +96,9 @@ export default class CategoryItem extends PureComponent {
             <Animated.View style={{zIndex: 3, padding: 35, flex: 1, justifyContent: 'flex-end', transform: [{scale: this.state.scale}]}}>             
             <View>
             <View style={{width: 5, height: '90%', position: 'absolute', left: -10, backgroundColor: colorPrimaryLight}}></View>
-            <Text style={styles.itemSource}>{this.props.news[this.props.item][0].source.name}</Text>
-            <Text style={styles.itemTitle}>{this.props.news[this.props.item][0].title}</Text>
-            <Text style={styles.itemTime}>{moment.parseZone(this.props.news[this.props.item][0].publishedAt).fromNow()}</Text>
+            <Text style={styles.itemSource}>{splash.source.name}</Text>
+            <Text style={styles.itemTitle}>{splash.title}</Text>
+            <Text style={styles.itemTime}>{moment.parseZone(splash.publishedAt).fromNow()}</Text>
             </View>
             <Icon
             size={35}

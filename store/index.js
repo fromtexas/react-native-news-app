@@ -16,5 +16,5 @@ const perReducers = persistCombineReducers(config, reducers);
 const store = createStore(perReducers, {}, compose(applyMiddleware(thunk)));
 
 export let persistor = persistStore(store);
-persistor.purge();
+//persistor.purge();
 export default store;

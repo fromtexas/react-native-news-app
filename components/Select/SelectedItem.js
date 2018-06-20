@@ -9,7 +9,7 @@ export default class SelectedItem extends PureComponent {
         close: new Animated.ValueXY(0,0),
         scale: new Animated.Value(0)
     }
-
+    //??
     remove = (item) => {
         return () => {
             Animated.spring(this.state.close, {
@@ -23,6 +23,7 @@ export default class SelectedItem extends PureComponent {
 
     close = (item) => {
         return () => {
+            this.props.update(true);
             Animated.spring(this.state.scale, {
                 toValue: 0
             }).start(() => this.props.remove(item));
