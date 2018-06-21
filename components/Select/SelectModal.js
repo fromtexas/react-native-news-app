@@ -1,10 +1,18 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {View, Modal, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import SelectItem from './SelectItem';
 import {colorGreyLight1, colorPrimaryLight} from '../../assets/base';
 
-export default class SelectModal extends PureComponent {
+export default class SelectModal extends Component {
+
+    state = {
+        showList: false
+    }
+
+    changeVisibility = () => {
+        this.setState({showList: !this.state.showList})
+    }
     
     keyExtractor = (item, index) => item
 
@@ -22,9 +30,9 @@ export default class SelectModal extends PureComponent {
         return (
             <View style={styles.container}>
                 <Modal
-                visible={this.props.visible}
+                visible={this.state.showList}
                 animationType={'slide'}
-                onRequestClose={this.props.close}
+                onRequestClose={this.changeVisibility}
                 transparent={true}
                 >
                 <View style={styles.listWrap}>
@@ -38,7 +46,7 @@ export default class SelectModal extends PureComponent {
                 <Button  
                 backgroundColor={colorPrimaryLight}
                 color={colorGreyLight1}
-                onPress={this.props.close} 
+                onPress={this.changeVisibility} 
                 icon={{name: 'close', color: colorGreyLight1}} 
                 title='CLOSE'
                 buttonStyle={{borderRadius: 3}}

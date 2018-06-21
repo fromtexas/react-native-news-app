@@ -28,7 +28,6 @@ export default class SelectItem extends PureComponent {
     }
     render () {
         const title = this.props.item.charAt(0).toUpperCase() + this.props.item.slice(1);
-        
         return (
             <CheckBox
             uncheckedColor={colorGreyLight1}

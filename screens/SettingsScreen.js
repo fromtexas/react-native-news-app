@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {View, Text, StatusBar, ScrollView} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
@@ -7,18 +7,28 @@ import {addCountry, removeCountry} from '../actions/CountryActions';
 import {unbanResourse} from '../actions/ResourceActions';
 import {colorGreyDark1, colorGreyLight1, colorPrimary} from '../assets/base';
 import Select from '../components/Select/Select';
-import {submit} from '../utils';
 import BanedList from '../components/Baned/BanedList';
+import Warning from '../components/Warning';
 
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 const country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
 
 
 
-class SettingsScreen extends PureComponent{
+class SettingsScreen extends Component{
     
-    state = {
-        warning: ''
+    // shouldComponentUpdate (nextProps){
+    //     return false;
+    // }
+
+    checkSubmit = () => {
+        const {category, country} = this.props;
+
+        if(category.length && country.length){
+            return false;
+        }
+
+        return true;
     }
     
     render () {
@@ -35,12 +45,12 @@ class SettingsScreen extends PureComponent{
                 color={colorGreyLight1}
                 size={32}
                 containerStyle={{marginLeft:20, borderRadius: 50}}
-                onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
+                onPress={() => !this.checkSubmit()? this.props.navigation.navigate('news') : console.log('warning')}
                 />
                 <Text style={{color: colorGreyLight1, fontSize: 22, fontWeight: 'bold', paddingLeft: 20}}>Settings</Text>
                 </View> 
 
-                <Text style={{textAlign: 'center', color: colorPrimary}}>{this.state.warning}</Text> 
+                <Warning category={this.props.category} country={this.props.country}/>
 
                 <ScrollView>
 
@@ -69,12 +79,13 @@ class SettingsScreen extends PureComponent{
                 ban={this.props.ban} 
                 />
 
-                <Button 
+                <Button
+                disabled = {this.checkSubmit()}  
                 buttonStyle={{backgroundColor: colorGreyLight1, borderRadius: 3}}
                 color={colorGreyDark1} 
                 icon={{name: 'check', color: colorGreyDark1}} 
                 title='DONE'
-                onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
+                onPress={() => this.props.navigation.navigate('news')}
                 />
 
                 </ScrollView>

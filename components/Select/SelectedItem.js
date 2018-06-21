@@ -9,17 +9,6 @@ export default class SelectedItem extends PureComponent {
         close: new Animated.ValueXY(0,0),
         scale: new Animated.Value(0)
     }
-    //??
-    remove = (item) => {
-        return () => {
-            Animated.spring(this.state.close, {
-                toValue:{
-                    x: Dimensions.get('window').width,
-                    y: 0
-                }
-            }).start(() => this.props.remove(item));
-        } 
-    }
 
     close = (item) => {
         return () => {

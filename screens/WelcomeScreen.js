@@ -24,14 +24,14 @@ class WelcomeScreen extends PureComponent{
         };
 
         const onExit = () => {
-            this.setState({activeScreen: true});
+            this.setState({activeScreen: false});
         };
 
         NavigationStateNotifier.newListener(this, onEnter, onExit);
     }
 
     state = {
-        activeScreen: false,
+        activeScreen: true,
         warning: ''
     }
 
@@ -47,7 +47,7 @@ class WelcomeScreen extends PureComponent{
     }
 
     render () {
-        return (
+        return !this.state.activeScreen? null : (
             <View style={styles.screenContainer}>
             <ViewPagerContainer style={{flex: 1}}>
             <ViewPagerAndroid ref='pages' style={styles.viewPager}>

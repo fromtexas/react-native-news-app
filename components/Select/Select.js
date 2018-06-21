@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Button} from 'react-native-elements';
 import SelectedList from './SelectedList';
@@ -7,21 +7,22 @@ import {colorPrimaryDark} from '../../assets/base';
 import {connect} from 'react-redux';
 import {settingsUpdated} from '../../actions/SettingsActions';
 
-class Select extends PureComponent {
+class Select extends Component {
 
     static defaultProps = {
         items: []
     }
 
-    state = {
-        showList: false
+    showModal = () => {
+        this.selectModal.changeVisibility()
     }
 
-    closeModal = () => {
-        this.setState({showList: false});
+    shouldComponentUpdate (nextProps) {
+        return nextProps.items.length !== this.props.items.length;
     }
 
     render () {
+        console.log('re select');
         return (
             <View style={this.props.style}>
                 <SelectedList
@@ -30,18 +31,17 @@ class Select extends PureComponent {
                 update={this.props.settingsUpdated}
                 />
                 <Button 
-                onPress={() => {this.setState({showList: !this.state.showList})}} 
+                onPress={this.showModal} 
                 title={this.props.type} 
                 buttonStyle={{backgroundColor: colorPrimaryDark, borderRadius: 3}}
                 icon={{name: this.props.icon}}
                 />
                 <SelectModal
+                ref={instance => { this.selectModal = instance }}
                 update={this.props.settingsUpdated}
                 options={this.props.options}
                 add={this.props.add}
                 remove={this.props.remove}
-                visible={this.state.showList}
-                close={this.closeModal}
                 checked={this.props.items}
                 />
             </View>
