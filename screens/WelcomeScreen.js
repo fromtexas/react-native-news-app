@@ -8,8 +8,8 @@ import NavigationStateNotifier from '../utils/NavigationStateNotifier';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
 import {addCountry, removeCountry} from '../actions/CountryActions';
 import {settingsUpdated} from '../actions/SettingsActions';
-import {submit} from '../utils';
 import ViewPagerContainer from '../components/ViewPagerContainer';
+import Warning from '../components/Warning';
 
 
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
@@ -32,16 +32,29 @@ class WelcomeScreen extends PureComponent{
 
     state = {
         activeScreen: true,
-        warning: ''
+    }
+
+    checkSubmit = () => {
+        const {category, country} = this.props;
+        const categoryKeys = Object.keys(category);
+        const countryKeys = Object.keys(country);
+
+        if(categoryKeys.length && countryKeys.length){
+            return false;
+        }
+
+        return true;
     }
 
     componentWillMount = async () => {
 
         let root = await AsyncStorage.getAllKeys();
 
-        const category = this.props.category.length;
-        const country = this.props.country.length;
-        if( category && country && root ){
+        const {category, country} = this.props;
+        const categoryKeys = Object.keys(category);
+        const countryKeys = Object.keys(country);
+
+        if( categoryKeys.length && countryKeys.length && root ){
             this.props.navigation.navigate('news');
         }
     }
@@ -72,7 +85,7 @@ class WelcomeScreen extends PureComponent{
             <View key='2'>
 
                 <ScrollView>
-                <Text style={styles.screenParagraph}>{this.state.warning}</Text>
+                <Warning country={this.props.country} category={this.props.category}/>
                 <Icon
                 name='settings'
                 color={colorGreyLight1}
@@ -102,12 +115,13 @@ class WelcomeScreen extends PureComponent{
                 icon='map'
                 />
 
-                <Button 
+                <Button
+                disabled = {this.checkSubmit()} 
                 buttonStyle={{backgroundColor: colorGreyLight1, borderRadius: 3}}
                 color={colorGreyDark1} 
                 icon={{name: 'check', color: colorGreyDark1}} 
                 title='DONE'
-                onPress={() => submit(this.props.country.length, this.props.category.length, this, this.props.navigation.navigate)}
+                onPress={() => this.props.navigation.navigate('news')}
                 />
                 </ScrollView>
 

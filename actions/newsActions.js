@@ -12,20 +12,39 @@ export const fetchNews = () => async (dispatch, getState) => {
   const country = getState().country;
   let categoryArr = {};
 
-  for(let i = 0; i < category.length; i++){
+  // for(let i = 0; i < category.length; i++){
 
-    categoryArr[category[i]] = [];
+  //   categoryArr[category[i]] = [];
     
-    for (let j = 0; j < country.length; j++){
+  //   for (let j = 0; j < country.length; j++){
+  //     try {
+  //       let {data} = await axios.get(`${URL}${API_KEY}&category=${category[i]}&country=${country[j]}`);
+  //       categoryArr[category[i]] = [...categoryArr[category[i]], ...data.articles];
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  
+  // }
+
+  const categoryKeys = Object.keys(category);
+  const countryKeys = Object.keys(country);
+
+  for(let i = 0; i < categoryKeys.length; i++){
+
+    categoryArr[categoryKeys[i]] = [];
+    
+    for (let j = 0; j < countryKeys.length; j++){
       try {
-        let {data} = await axios.get(`${URL}${API_KEY}&category=${category[i]}&country=${country[j]}`);
-        categoryArr[category[i]] = [...categoryArr[category[i]], ...data.articles];
+        let {data} = await axios.get(`${URL}${API_KEY}&category=${categoryKeys[i]}&country=${countryKeys[j]}`);
+        categoryArr[categoryKeys[i]] = [...categoryArr[categoryKeys[i]], ...data.articles];
       } catch (err) {
         console.log(err);
       }
     }
   
   }
+
   
   dispatch({type: FETCH_NEWS, payload: categoryArr});
 

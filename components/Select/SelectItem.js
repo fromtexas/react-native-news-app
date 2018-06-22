@@ -7,10 +7,8 @@ export default class SelectItem extends PureComponent {
         checked: false
     }
 
-    //temporary
-    componentDidMount () {
-        const index = this.props.options.findIndex(item => item === this.props.item);
-        if(index > -1){
+    componentWillMount () {
+        if(this.props.options[this.props.item]){
             this.setState({checked: true})
         }
     }

@@ -14,8 +14,8 @@ export default class CategorySlider extends PureComponent {
 
     renderCategories = () => {
         const {category, banAction, baned, news} = this.props;
-
-        return category.map((item) => {
+        const categoryKeys = Object.keys(category);
+        return categoryKeys.map((item) => {
             return (
                 <View style={{height: SCREEN_HEIGHT}} key={item}>
                 <CategoryItem

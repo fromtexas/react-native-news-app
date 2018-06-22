@@ -4,12 +4,12 @@ import SelectedItem from './SelectedItem';
 
 export default class SelectList extends PureComponent{
     renderSelectedList = () => {
-        return this.props.selected.map((item,index) => {
+        const selectedKeys = Object.keys(this.props.selected);
+        return selectedKeys.map((item, index) => {
             return <SelectedItem update={this.props.update} remove={this.props.remove} key={index} item={item}/>
-        })
+        });
     }
     render () {
-        //console.log('re');
         return (
             <View style={styles.container}>
                 {this.renderSelectedList()}

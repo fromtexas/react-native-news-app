@@ -18,7 +18,8 @@ export default class DotsRow extends PureComponent {
     }
 
     renderDotsRow = () => {
-        return this.props.category.map( item => {
+        const categoryKeys = Object.keys(this.props.category);
+        return categoryKeys.map( item => {
             return (
                 <View key={item} style={{
                     height: 15,

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {addCategory, removeCategory} from '../actions/CategoryActions';
 import {addCountry, removeCountry} from '../actions/CountryActions';
 import {unbanResourse} from '../actions/ResourceActions';
-import {colorGreyDark1, colorGreyLight1, colorPrimary} from '../assets/base';
+import {colorGreyDark1, colorGreyLight1} from '../assets/base';
 import Select from '../components/Select/Select';
 import BanedList from '../components/Baned/BanedList';
 import Warning from '../components/Warning';
@@ -23,8 +23,10 @@ class SettingsScreen extends Component{
 
     checkSubmit = () => {
         const {category, country} = this.props;
+        const categoryKeys = Object.keys(category);
+        const countryKeys = Object.keys(country);
 
-        if(category.length && country.length){
+        if(categoryKeys.length && countryKeys.length){
             return false;
         }
 

@@ -10,14 +10,16 @@ export default class Warning extends PureComponent {
 
     componentWillReceiveProps (nextProps) {
         const {category, country} = nextProps;
+        const categoryKeys = Object.keys(category);
+        const countryKeys = Object.keys(country); 
 
-        if(!category.length && !country.length){
+        if(!categoryKeys.length && !countryKeys.length){
             return this.setState({warning: `Category and country can't be empty. Choose something.`});
         }
-        if(!category.length){
+        if(!categoryKeys.length){
             return this.setState({warning: `Category can't be empty. Choose something.`});
         }
-        if(!country.length){
+        if(!countryKeys.length){
             return this.setState({warning: `Country can't be empty. Choose something.`});
         }
 

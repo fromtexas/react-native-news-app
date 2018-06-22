@@ -10,7 +10,7 @@ import {settingsUpdated} from '../../actions/SettingsActions';
 class Select extends Component {
 
     static defaultProps = {
-        items: []
+        items: {}
     }
 
     showModal = () => {
@@ -18,8 +18,11 @@ class Select extends Component {
     }
 
     shouldComponentUpdate (nextProps) {
-        return nextProps.items.length !== this.props.items.length;
+        const currentPropsKeys = Object.keys(this.props.items);
+        const nextPropsKeys = Object.keys(nextProps.items);
+        return currentPropsKeys.length !== nextPropsKeys.length;
     }
+
 
     render () {
         console.log('re select');
