@@ -10,14 +10,14 @@ import {colorGreyDark1, colorGreyLight1, colorPrimaryLight, colorGreyDark3} from
 class NewsItem extends Component {
     state = {
         close: new Animated.Value(1),
-        baned: false
+        baned: false,
     }
 
     banItem = () => {
         // Animated.spring(this.state.close, {
         //     toValue: 0
         // }).start(() => this.props.banAction(this.props.source.name));
-        this.props.banAction(this.props.source.name)
+        this.props.banAction(this.props.source.name);
     }
 
     componentWillMount () {
@@ -57,7 +57,7 @@ class NewsItem extends Component {
     }
 
     render () {
-        if(this.state.baned){
+        if(this.state.baned && !this.state.justBaned){
             return null;
         }
         return (
@@ -91,6 +91,7 @@ class NewsItem extends Component {
 const mapStateToProps = ({ban}) => ({
     ban
 });
+
 
 export default connect(mapStateToProps)(NewsItem);
 

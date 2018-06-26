@@ -30,7 +30,6 @@ class SettingsScreen extends PureComponent{
     }
     
     render () {
-        console.log('re');
         return (
             <View style={{paddingTop: StatusBar.currentHeight, backgroundColor: colorGreyDark1, flex: 1}}>
                 <View 

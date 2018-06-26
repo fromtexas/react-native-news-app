@@ -25,7 +25,6 @@ class Select extends Component {
 
 
     render () {
-        console.log('re select');
         return (
             <View style={this.props.style}>
                 <SelectedList
