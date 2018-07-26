@@ -15,5 +15,9 @@
     "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "connect": "^3.6.6",
+    "fresh": "^0.5.2"
   }
 }
