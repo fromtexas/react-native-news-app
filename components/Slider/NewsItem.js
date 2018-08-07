@@ -14,9 +14,6 @@ class NewsItem extends Component {
     }
 
     banItem = () => {
-        // Animated.spring(this.state.close, {
-        //     toValue: 0
-        // }).start(() => this.props.banAction(this.props.source.name));
         this.props.banAction(this.props.source.name);
     }
 
