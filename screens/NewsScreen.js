@@ -11,18 +11,19 @@ import { colorPrimaryDark, colorGreyDark1 } from "../assets/base";
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
-    const onEnter = async () => {
-      if (this.props.settings) {
-        await this.props.fetchNews();
-        this.props.settingsUpdated(false);
-        this.setState({ activeScreen: true });
-      }
-    };
 
-    const onExit = () => {};
-
-    NavigationStateNotifier.newListener(this, onEnter, onExit);
+    NavigationStateNotifier.newListener(this, this.onEnter, this.onExit);
   }
+
+  onEnter = async () => {
+    if (this.props.settings) {
+      await this.props.fetchNews();
+      this.props.settingsUpdated(false);
+      this.setState({ activeScreen: true });
+    }
+  };
+
+  onExit = () => {};
 
   componentWillReceiveProps(props) {
     if (props.settings !== this.props.settings) {

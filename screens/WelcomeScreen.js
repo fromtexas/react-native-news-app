@@ -18,87 +18,24 @@ import { addCountry, removeCountry } from "../actions/CountryActions";
 import { settingsUpdated } from "../actions/SettingsActions";
 import ViewPagerContainer from "../components/ViewPagerContainer";
 import Warning from "../components/Warning";
+import { options } from "../options";
 
-const categories = [
-  "business",
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "sports",
-  "technology"
-];
-
-const country = [
-  "ae",
-  "ar",
-  "at",
-  "au",
-  "be",
-  "bg",
-  "br",
-  "ca",
-  "ch",
-  "cn",
-  "co",
-  "cu",
-  "cz",
-  "de",
-  "eg",
-  "fr",
-  "gb",
-  "gr",
-  "hk",
-  "hu",
-  "id",
-  "ie",
-  "il",
-  "in",
-  "it",
-  "jp",
-  "kr",
-  "lt",
-  "lv",
-  "ma",
-  "mx",
-  "my",
-  "ng",
-  "nl",
-  "no",
-  "nz",
-  "ph",
-  "pl",
-  "pt",
-  "ro",
-  "rs",
-  "ru",
-  "sa",
-  "se",
-  "sg",
-  "si",
-  "sk",
-  "th",
-  "tr",
-  "tw",
-  "ua",
-  "us",
-  "ve",
-  "za"
-];
+const { categories, country } = options;
 
 class WelcomeScreen extends PureComponent {
   constructor(props) {
     super(props);
-    const onEnter = () => {
-      this.setState({ activeScreen: true });
-    };
 
-    const onExit = () => {
-      this.setState({ activeScreen: false });
-    };
-
-    NavigationStateNotifier.newListener(this, onEnter, onExit);
+    NavigationStateNotifier.newListener(this, this.onEnter, this.onExit);
   }
+
+  onEnter = () => {
+    this.setState({ activeScreen: true });
+  };
+
+  onExit = () => {
+    this.setState({ activeScreen: false });
+  };
 
   state = {
     activeScreen: true
