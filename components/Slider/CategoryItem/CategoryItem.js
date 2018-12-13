@@ -3,22 +3,20 @@ import {
   View,
   Text,
   Animated,
-  Dimensions,
   Image,
-  PanResponder
+  PanResponder,
+  StyleSheet
 } from "react-native";
 import { Icon } from "react-native-elements";
-import {
-  colorGreyDark1,
-  colorGreyLight1,
-  colorPrimaryLight
-} from "../../assets/base";
-import moment from "moment";
-import NewsList from "./NewsList";
 
-const SCREEN_HEIGHT = Dimensions.get("window").height;
-const SWIPE_THRESHOLD = 0.6 * SCREEN_HEIGHT;
-const SWIPE_OUT_DURATION = 250;
+import moment from "moment";
+import {
+  styles as style,
+  SCREEN_HEIGHT,
+  SWIPE_OUT_DURATION,
+  SWIPE_THRESHOLD
+} from "./styles";
+import NewsList from "../NewsList";
 
 export default class CategoryItem extends PureComponent {
   panResponder = PanResponder.create({
@@ -103,7 +101,7 @@ export default class CategoryItem extends PureComponent {
               width: "100%",
               height: SCREEN_HEIGHT,
               zIndex: 5,
-              backgroundColor: colorGreyDark1
+              backgroundColor: styles.colorGreyDark1.color
             }
           ]}
           {...this.state.panResponder.panHandlers}
@@ -140,7 +138,7 @@ export default class CategoryItem extends PureComponent {
                   height: "90%",
                   position: "absolute",
                   left: -10,
-                  backgroundColor: colorPrimaryLight
+                  backgroundColor: styles.colorPrimaryLight.color
                 }}
               />
               <Text style={styles.itemSource}>{splash.source.name}</Text>
@@ -152,7 +150,7 @@ export default class CategoryItem extends PureComponent {
             <Icon
               size={35}
               containerStyle={{ alignSelf: "center", marginBottom: 20 }}
-              color={colorGreyLight1}
+              color={styles.colorGreyLight1.color}
               name="keyboard-arrow-up"
             />
           </Animated.View>
@@ -167,46 +165,4 @@ export default class CategoryItem extends PureComponent {
   }
 }
 
-var styles = {
-  image: {
-    flex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-    backgroundColor: colorGreyDark1
-  },
-  viewPager: {
-    height: SCREEN_HEIGHT
-  },
-  pageStyle: {
-    flex: 1,
-    backgroundColor: colorGreyDark1
-  },
-  pageTitile: {
-    marginLeft: 28,
-    marginTop: 20,
-    fontWeight: "bold",
-    fontSize: 20,
-    backgroundColor: "transparent",
-    color: colorGreyLight1,
-    zIndex: 10
-  },
-  itemTitle: {
-    color: colorGreyLight1,
-    fontWeight: "bold",
-    fontSize: 26,
-    backgroundColor: "transparent",
-    textAlign: "left"
-  },
-  itemTime: {
-    color: colorGreyLight1,
-    marginBottom: 20,
-    fontSize: 16
-  },
-  itemSource: {
-    fontStyle: "italic",
-    color: colorGreyLight1,
-    fontSize: 16
-  }
-};
+const styles = StyleSheet.create(style);

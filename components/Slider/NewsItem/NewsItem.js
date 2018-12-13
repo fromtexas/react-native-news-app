@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, Linking, Animated } from "react-native";
+import { View, Text, Linking, Animated, StyleSheet } from "react-native";
 import moment from "moment";
 import { Icon } from "react-native-elements";
-import {
-  colorGreyDark1,
-  colorGreyLight1,
-  colorPrimaryLight,
-  colorGreyDark3
-} from "../../assets/base";
+import { styles as style } from "./styles";
 
 class NewsItem extends Component {
   banItem = () => {
@@ -44,13 +39,13 @@ class NewsItem extends Component {
             containerStyle={[styles.icon]}
             name="external-link"
             type="feather"
-            color={colorGreyDark3}
+            color={styles.mainColors.color}
             onPress={() => Linking.openURL(this.props.url)}
           />
           <Icon
             containerStyle={[styles.icon]}
             name="close"
-            color={colorGreyDark3}
+            color={styles.mainColors.color}
             onPress={this.banItem}
           />
         </View>
@@ -59,44 +54,10 @@ class NewsItem extends Component {
   }
 }
 
+const styles = StyleSheet.create(style);
+
 const mapStateToProps = ({ ban }) => ({
   ban
 });
 
 export default connect(mapStateToProps)(NewsItem);
-
-const styles = {
-  container: {
-    backgroundColor: colorGreyLight1,
-    borderBottomWidth: 0.5,
-    borderTopWidth: 0.5,
-    borderColor: colorGreyDark3,
-    padding: 20
-  },
-  title: {
-    color: colorGreyDark1,
-    fontSize: 18,
-    fontWeight: "bold"
-  },
-  description: {
-    color: colorGreyDark1,
-    fontSize: 16
-  },
-  author: {
-    color: colorPrimaryLight
-  },
-  publishedAt: {
-    color: colorGreyDark3
-  },
-  name: {
-    color: colorPrimaryLight,
-    marginRight: "auto",
-    fontStyle: "italic"
-  },
-  icon: {
-    width: 40,
-    height: 40,
-    borderRadius: 100,
-    marginLeft: 10
-  }
-};

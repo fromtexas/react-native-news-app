@@ -1,12 +1,10 @@
 import React, { PureComponent } from "react";
-import { ViewPagerAndroid, View, Dimensions } from "react-native";
+import { ViewPagerAndroid, View, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
-import { colorGreyLight1 } from "../../assets/base";
+import { styles as style, SCREEN_HEIGHT } from "./styles";
 
-import CategoryItem from "./CategoryItem";
-import DotsRow from "./DotsRow";
-
-const SCREEN_HEIGHT = Dimensions.get("window").height;
+import CategoryItem from "../CategoryItem";
+import DotsRow from "../DotsRow";
 
 export default class CategorySlider extends PureComponent {
   renderCategories = () => {
@@ -49,13 +47,13 @@ export default class CategorySlider extends PureComponent {
         <Icon
           containerStyle={styles.reload}
           name="update"
-          color={colorGreyLight1}
+          color={styles.colorGreyLight1.color}
           onPress={this.fetchFreshNews}
         />
         <Icon
           containerStyle={styles.dots}
           name="dots-three-vertical"
-          color={colorGreyLight1}
+          color={styles.colorGreyLight1.color}
           type="entypo"
           onPress={() => this.props.navigation("settings")}
         />
@@ -70,24 +68,4 @@ export default class CategorySlider extends PureComponent {
   }
 }
 
-var styles = {
-  viewPager: {
-    height: SCREEN_HEIGHT
-  },
-  reload: {
-    position: "absolute",
-    top: 10,
-    right: 60,
-    borderRadius: 50,
-    width: 50,
-    height: 50
-  },
-  dots: {
-    position: "absolute",
-    top: 10,
-    right: 15,
-    borderRadius: 50,
-    width: 50,
-    height: 50
-  }
-};
+const styles = StyleSheet.create(style);
