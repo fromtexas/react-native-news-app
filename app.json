@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "mehnews",
+    "slug": "mehnews",
+    "privacy": "public",
+    "sdkVersion": "31.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/meh_logo.png",
+    "splash": {
+      "image": "./assets/splash_meh.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#333333"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
