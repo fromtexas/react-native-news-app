@@ -3,88 +3,22 @@ import {
   View,
   Text,
   ScrollView,
-  StatusBar,
   ViewPagerAndroid,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  StyleSheet
 } from "react-native";
 import { Icon, Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { colorGreyDark1, colorGreyLight1, colorPrimary } from "../assets/base";
-import Select from "../components/Select/Select";
-import NavigationStateNotifier from "../utils/NavigationStateNotifier";
-import { addCategory, removeCategory } from "../actions/CategoryActions";
-import { addCountry, removeCountry } from "../actions/CountryActions";
-import { settingsUpdated } from "../actions/SettingsActions";
-import ViewPagerContainer from "../components/ViewPagerContainer";
-import Warning from "../components/Warning";
-
-const categories = [
-  "business",
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "sports",
-  "technology"
-];
-
-const country = [
-  "ae",
-  "ar",
-  "at",
-  "au",
-  "be",
-  "bg",
-  "br",
-  "ca",
-  "ch",
-  "cn",
-  "co",
-  "cu",
-  "cz",
-  "de",
-  "eg",
-  "fr",
-  "gb",
-  "gr",
-  "hk",
-  "hu",
-  "id",
-  "ie",
-  "il",
-  "in",
-  "it",
-  "jp",
-  "kr",
-  "lt",
-  "lv",
-  "ma",
-  "mx",
-  "my",
-  "ng",
-  "nl",
-  "no",
-  "nz",
-  "ph",
-  "pl",
-  "pt",
-  "ro",
-  "rs",
-  "ru",
-  "sa",
-  "se",
-  "sg",
-  "si",
-  "sk",
-  "th",
-  "tr",
-  "tw",
-  "ua",
-  "us",
-  "ve",
-  "za"
-];
+import Select from "../../components/Select/Select";
+import NavigationStateNotifier from "../../utils/NavigationStateNotifier";
+import { addCategory, removeCategory } from "../../actions/CategoryActions";
+import { addCountry, removeCountry } from "../../actions/CountryActions";
+import { settingsUpdated } from "../../actions/SettingsActions";
+import ViewPagerContainer from "../../components/ViewPagerContainer";
+import Warning from "../../components/Warning";
+import { styles as style } from "./styles";
+import { categories, country } from "../../constants";
 
 class WelcomeScreen extends PureComponent {
   constructor(props) {
@@ -136,7 +70,7 @@ class WelcomeScreen extends PureComponent {
             <View style={{ flex: 1 }} key="1">
               <Image
                 style={{ width: 300, height: 300, alignSelf: "center" }}
-                source={require("../assets/meh_img.png")}
+                source={require("../../assets/meh_img.png")}
               />
               <Text style={styles.screenTitle}>
                 Get breaking news headlines with short description filtered by
@@ -148,7 +82,7 @@ class WelcomeScreen extends PureComponent {
                   iconRight={{ name: "arrow-forward" }}
                   title="NEXT"
                   buttonStyle={{
-                    backgroundColor: colorPrimary,
+                    backgroundColor: styles.colorPrimary.color,
                     borderRadius: 3
                   }}
                   onPress={() => this.refs.pages.setPage(1)}
@@ -164,7 +98,7 @@ class WelcomeScreen extends PureComponent {
                 />
                 <Icon
                   name="settings"
-                  color={colorGreyLight1}
+                  color={styles.colorGreyLight1.color}
                   size={48}
                   containerStyle={styles.iconContainer}
                 />
@@ -198,11 +132,11 @@ class WelcomeScreen extends PureComponent {
                 <Button
                   disabled={this.checkSubmit()}
                   buttonStyle={{
-                    backgroundColor: colorGreyLight1,
+                    backgroundColor: styles.colorGreyLight1.color,
                     borderRadius: 3
                   }}
-                  color={colorGreyDark1}
-                  icon={{ name: "check", color: colorGreyDark1 }}
+                  color={styles.colorGreyDark1.color}
+                  icon={{ name: "check", color: styles.colorGreyDark1.color }}
                   title="DONE"
                   onPress={() => this.props.navigation.navigate("news")}
                 />
@@ -211,7 +145,7 @@ class WelcomeScreen extends PureComponent {
               <Text
                 style={{
                   alignSelf: "flex-end",
-                  color: colorGreyLight1,
+                  color: styles.colorGreyLight1.color,
                   fontSize: 8
                 }}
               >
@@ -230,35 +164,9 @@ const mapStateToProps = ({ category, country }) => ({
   country
 });
 
+const styles = StyleSheet.create(style);
+
 export default connect(
   mapStateToProps,
   { addCategory, removeCategory, addCountry, removeCountry, settingsUpdated }
 )(WelcomeScreen);
-
-const styles = {
-  viewPager: {
-    flex: 1
-  },
-  screenContainer: {
-    flex: 1,
-    backgroundColor: colorGreyDark1,
-    paddingBottom: 20,
-    paddingTop: StatusBar.currentHeight
-  },
-  screenTitle: {
-    textAlign: "center",
-    color: colorGreyLight1,
-    fontSize: 18,
-    paddingBottom: 10,
-    paddingTop: 10
-  },
-  screenParagraph: {
-    textAlign: "center",
-    color: colorGreyLight1
-  },
-  iconContainer: {
-    alignSelf: "center",
-    paddingTop: 10,
-    paddingBottom: 10
-  }
-};

@@ -14,26 +14,28 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need [Expo](https://expo.io/) pre-installed and you’re good to go. 
+You need [Expo](https://expo.io/) pre-installed and you’re good to go.
 
 ### Installing
 
 1. Clone Repository
-2. Open folder with Expo
+2. `cd react-native-news-app`
+3. `npm i`
+4. `npm start`
 
 ## Built With
 
-* [react native](https://github.com/facebook/react-native) 
-* [redux](https://github.com/reactjs/redux)
-* [redux-persist](https://github.com/rt2zz/redux-persist)
-* [expo](https://expo.io/)
-* [react-navigation](https://github.com/react-navigation/react-navigation)
-* [newsapi](https://newsapi.org/)
-* other stuff...
+- [react native](https://github.com/facebook/react-native)
+- [redux](https://github.com/reactjs/redux)
+- [redux-persist](https://github.com/rt2zz/redux-persist)
+- [expo](https://expo.io/)
+- [react-navigation](https://github.com/react-navigation/react-navigation)
+- [newsapi](https://newsapi.org/)
+- other stuff...
 
 ## Authors
 
-* **Oleg Veskelen** - [fromtexas](https://github.com/fromtexas)
+- **Oleg Veskelen** - [fromtexas](https://github.com/fromtexas)
 
 ## Contributing
 
@@ -44,6 +46,7 @@ You need [Expo](https://expo.io/) pre-installed and you’re good to go.
 5. Create a new Pull Request
 
 ## Improve
+
 Feedback is more than appreciated [Oleg](https://github.com/fromtexas).
 You are 100% allowed to use this app for both personal and commercial use, but not claim it as your own. A credit to the original author is of course highly appreciated!
 

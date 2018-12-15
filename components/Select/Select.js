@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Button } from "react-native-elements";
 import SelectedList from "./SelectedList";
 import SelectModal from "./SelectModal";
+import SelectedItem from "./SelectedItem";
 import { colorPrimaryDark } from "../../assets/base";
 import { connect } from "react-redux";
 import { settingsUpdated } from "../../actions/SettingsActions";
@@ -22,14 +23,24 @@ class Select extends Component {
     return currentPropsKeys.length !== nextPropsKeys.length;
   }
 
+  renderSelected = () => {
+    const selectedKeys = Object.keys(this.props.items);
+    return selectedKeys.map((item, index) => {
+      return (
+        <SelectedItem
+          update={this.props.settingsUpdated}
+          remove={this.props.remove}
+          key={index}
+          item={item}
+        />
+      );
+    });
+  };
+
   render() {
     return (
       <View style={this.props.style}>
-        <SelectedList
-          selected={this.props.items}
-          remove={this.props.remove}
-          update={this.props.settingsUpdated}
-        />
+        <SelectedList>{this.renderSelected()}</SelectedList>
         <Button
           onPress={this.showModal}
           title={this.props.type}

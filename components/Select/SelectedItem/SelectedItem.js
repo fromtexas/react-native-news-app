@@ -1,11 +1,7 @@
 import React, { PureComponent } from "react";
-import { Text, Animated, Dimensions } from "react-native";
+import { Text, Animated, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
-import {
-  colorPrimaryDark,
-  colorGreyLight1,
-  colorGreyDark1
-} from "../../assets/base";
+import { styles as style } from "./styles";
 
 export default class SelectedItem extends PureComponent {
   state = {
@@ -28,11 +24,6 @@ export default class SelectedItem extends PureComponent {
     }).start();
   };
 
-  getSize = ({ nativeEvent }) => {
-    const { width } = nativeEvent.layout;
-    this.state.close.setValue(width);
-  };
-
   render() {
     const title =
       this.props.item.charAt(0).toUpperCase() + this.props.item.slice(1);
@@ -53,29 +44,4 @@ export default class SelectedItem extends PureComponent {
   }
 }
 
-const styles = {
-  container: {
-    borderRadius: 100,
-    backgroundColor: colorGreyLight1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 30,
-    marginLeft: 10,
-    marginBottom: 10
-  },
-  text: {
-    fontSize: 14,
-    color: colorGreyDark1,
-    marginLeft: 10
-  },
-  iconContainer: {
-    height: 30,
-    width: 30,
-    marginLeft: 10,
-    borderRadius: 50,
-    backgroundColor: colorPrimaryDark,
-    elevation: 3,
-    transform: [{ translateX: 0.3 }]
-  }
-};
+const styles = StyleSheet.create(style);
