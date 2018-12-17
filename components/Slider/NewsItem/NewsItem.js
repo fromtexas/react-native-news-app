@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text, Linking, Animated, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 import moment from "moment";
 import { Icon } from "react-native-elements";
 import { styles as style } from "./styles";
@@ -53,6 +54,12 @@ class NewsItem extends Component {
     );
   }
 }
+
+NewsItem.propTypes = {
+  ban: PropTypes.object,
+  style: PropTypes.object,
+  banAction: PropTypes.func
+};
 
 const styles = StyleSheet.create(style);
 

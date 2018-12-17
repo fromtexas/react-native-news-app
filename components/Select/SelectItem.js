@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { CheckBox } from "react-native-elements";
+import PropTypes from "prop-types";
 import { colorPrimaryDark, colorGreyLight1 } from "../../assets/base";
 
 export default class SelectItem extends PureComponent {
@@ -48,3 +49,11 @@ export default class SelectItem extends PureComponent {
     );
   }
 }
+
+SelectItem.propTypes = {
+  update: PropTypes.func,
+  add: PropTypes.func,
+  remove: PropTypes.func,
+  item: PropTypes.string,
+  options: PropTypes.object
+};

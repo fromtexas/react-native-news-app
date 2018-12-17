@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView } from "react-native";
+import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
 import { colorGreyDark1 } from "../../assets/base";
 import uuidv4 from "uuid/v4";
@@ -32,3 +33,8 @@ export default class NewsList extends Component {
     );
   }
 }
+
+NewsList.propTypes = {
+  banAction: PropTypes.func,
+  news: PropTypes.array
+};

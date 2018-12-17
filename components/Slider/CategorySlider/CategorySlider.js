@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { ViewPagerAndroid, View, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import PropTypes from "prop-types";
 import { styles as style, SCREEN_HEIGHT } from "./styles";
 
 import CategoryItem from "../CategoryItem";
@@ -67,5 +68,15 @@ export default class CategorySlider extends PureComponent {
     );
   }
 }
+
+CategorySlider.propTypes = {
+  banAction: PropTypes.func,
+  baned: PropTypes.object,
+  news: PropTypes.object,
+  category: PropTypes.object,
+  navigation: PropTypes.func,
+  reload: PropTypes.func,
+  preloader: PropTypes.func
+};
 
 const styles = StyleSheet.create(style);

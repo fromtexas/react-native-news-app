@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { View, Modal, FlatList } from "react-native";
+import { View, Modal, FlatList, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
-import SelectItem from "./SelectItem";
-import { colorGreyLight1, colorPrimaryLight } from "../../assets/base";
+import PropTypes from "prop-types";
+import SelectItem from "../SelectItem";
+import { colorGreyLight1, colorPrimaryLight } from "../../../assets/base";
+import { styles as style } from "./styles";
 
 export default class SelectModal extends Component {
   state = {
@@ -57,18 +59,12 @@ export default class SelectModal extends Component {
   }
 }
 
-const styles = {
-  listWrap: {
-    justifyContent: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
-    flex: 1,
-    paddingTop: 10,
-    paddingBottom: 10
-  },
-  container: {
-    backgroundColor: "transparent"
-  },
-  list: {
-    backgroundColor: "transparent"
-  }
+SelectModal.propTypes = {
+  update: PropTypes.func,
+  add: PropTypes.func,
+  remove: PropTypes.func,
+  options: PropTypes.array,
+  checked: PropTypes.object
 };
+
+const styles = StyleSheet.create(style);

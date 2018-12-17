@@ -10,6 +10,7 @@
     "axios": "^0.18.0",
     "expo": "^31.0.2",
     "moment": "^2.23.0",
+    "prop-types": "^15.6.2",
     "qs": "^6.6.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
@@ -22,7 +23,8 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "eslint": "^5.10.0"
   },
   "private": true
 }

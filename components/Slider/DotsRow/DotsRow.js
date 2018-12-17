@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { View, Animated, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 import { styles as style } from "./styles";
 
 export default class DotsRow extends PureComponent {
@@ -34,5 +35,9 @@ export default class DotsRow extends PureComponent {
     );
   }
 }
+
+DotsRow.propTypes = {
+  category: PropTypes.object
+};
 
 const styles = StyleSheet.create(style);

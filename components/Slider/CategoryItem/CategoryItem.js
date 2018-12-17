@@ -7,8 +7,8 @@ import {
   PanResponder,
   StyleSheet
 } from "react-native";
+import PropTypes from "prop-types";
 import { Icon } from "react-native-elements";
-
 import moment from "moment";
 import {
   styles as style,
@@ -164,5 +164,12 @@ export default class CategoryItem extends PureComponent {
     );
   }
 }
+
+CategoryItem.propTypes = {
+  banAction: PropTypes.func,
+  baned: PropTypes.object,
+  news: PropTypes.object,
+  item: PropTypes.string
+};
 
 const styles = StyleSheet.create(style);

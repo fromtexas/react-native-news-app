@@ -2,12 +2,17 @@ import React, { PureComponent } from "react";
 import { View, Text, StatusBar, ScrollView } from "react-native";
 import { Icon, Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { addCategory, removeCategory } from "../actions/CategoryActions";
-import { addCountry, removeCountry } from "../actions/CountryActions";
-import { unbanResourse } from "../actions/ResourceActions";
+import PropTypes from "prop-types";
+import {
+  addCategory,
+  removeCategory,
+  addCountry,
+  removeCountry,
+  unbanResourse
+} from "../actions";
 import { colorGreyDark1, colorGreyLight1 } from "../assets/base";
-import Select from "../components/Select/Select";
-import BanedList from "../components/Baned/BanedList";
+import Select from "../components/Select";
+import Baned from "../components/Baned";
 import Warning from "../components/Warning";
 import { categories, country } from "../constants";
 
@@ -86,7 +91,7 @@ class SettingsScreen extends PureComponent {
             icon="map"
           />
 
-          <BanedList unban={this.props.unbanResourse} ban={this.props.ban} />
+          <Baned unban={this.props.unbanResourse} ban={this.props.ban} />
 
           <Button
             disabled={this.checkSubmit()}
@@ -101,6 +106,17 @@ class SettingsScreen extends PureComponent {
     );
   }
 }
+
+SettingsScreen.propTypes = {
+  category: PropTypes.object,
+  country: PropTypes.object,
+  ban: PropTypes.object,
+  addCategory: PropTypes.func,
+  removeCategory: PropTypes.func,
+  addCountry: PropTypes.func,
+  removeCountry: PropTypes.func,
+  unbanResourse: PropTypes.func
+};
 
 const mapStateToProps = ({ category, country, ban }) => ({
   category,

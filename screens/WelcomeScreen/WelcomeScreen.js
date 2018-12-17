@@ -10,11 +10,16 @@ import {
 } from "react-native";
 import { Icon, Button } from "react-native-elements";
 import { connect } from "react-redux";
-import Select from "../../components/Select/Select";
+import PropTypes from "prop-types";
+import Select from "../../components/Select";
+import {
+  addCategory,
+  removeCategory,
+  addCountry,
+  removeCountry,
+  settingsUpdated
+} from "../../actions";
 import NavigationStateNotifier from "../../utils/NavigationStateNotifier";
-import { addCategory, removeCategory } from "../../actions/CategoryActions";
-import { addCountry, removeCountry } from "../../actions/CountryActions";
-import { settingsUpdated } from "../../actions/SettingsActions";
 import ViewPagerContainer from "../../components/ViewPagerContainer";
 import Warning from "../../components/Warning";
 import { styles as style } from "./styles";
@@ -165,6 +170,16 @@ const mapStateToProps = ({ category, country }) => ({
 });
 
 const styles = StyleSheet.create(style);
+
+WelcomeScreen.propTypes = {
+  category: PropTypes.object,
+  country: PropTypes.object,
+  addCategory: PropTypes.func,
+  removeCategory: PropTypes.func,
+  addCountry: PropTypes.func,
+  removeCountry: PropTypes.func,
+  settingsUpdated: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
+import PropTypes from "prop-types";
 import SelectedList from "./SelectedList";
 import SelectModal from "./SelectModal";
 import SelectedItem from "./SelectedItem";
@@ -61,6 +62,16 @@ class Select extends Component {
     );
   }
 }
+
+Select.propTypes = {
+  add: PropTypes.func,
+  remove: PropTypes.func,
+  items: PropTypes.object,
+  style: PropTypes.object,
+  type: PropTypes.string,
+  options: PropTypes.array,
+  icon: PropTypes.string
+};
 
 export default connect(
   null,

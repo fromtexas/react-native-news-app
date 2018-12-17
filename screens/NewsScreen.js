@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { View, StatusBar, ActivityIndicator } from "react-native";
-import { fetchNews } from "../actions/NewsActions";
-import { settingsUpdated } from "../actions/SettingsActions";
-import { banResourse } from "../actions/ResourceActions";
+import { fetchNews, settingsUpdated, banResourse } from "../actions";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import NavigationStateNotifier from "../utils/NavigationStateNotifier";
-import CategorySlider from "../components/Slider/CategorySlider";
+import CategorySlider from "../components/Slider";
 import { colorPrimaryDark, colorGreyDark1 } from "../assets/base";
 
 class NewsScreen extends Component {
@@ -85,6 +84,16 @@ class NewsScreen extends Component {
     return this.renderScreen();
   }
 }
+
+NewsScreen.propTypes = {
+  news: PropTypes.object,
+  category: PropTypes.object,
+  ban: PropTypes.object,
+  settings: PropTypes.bool,
+  fetchNews: PropTypes.func,
+  banResourse: PropTypes.func,
+  settingsUpdated: PropTypes.func
+};
 
 const mapStateToProps = ({ news, category, ban, settings }) => ({
   news,

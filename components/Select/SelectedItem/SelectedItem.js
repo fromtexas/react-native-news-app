@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { Text, Animated, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import PropTypes from "prop-types";
 import { styles as style } from "./styles";
 
 export default class SelectedItem extends PureComponent {
@@ -11,7 +12,7 @@ export default class SelectedItem extends PureComponent {
 
   close = item => {
     return () => {
-      this.props.update(true);
+      this.props.update && this.props.update(true);
       Animated.spring(this.state.scale, {
         toValue: 0
       }).start(() => this.props.remove(item));
@@ -43,5 +44,11 @@ export default class SelectedItem extends PureComponent {
     );
   }
 }
+
+SelectedItem.propTypes = {
+  update: PropTypes.func,
+  remove: PropTypes.func,
+  item: PropTypes.string
+};
 
 const styles = StyleSheet.create(style);
