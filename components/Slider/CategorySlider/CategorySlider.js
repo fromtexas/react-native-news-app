@@ -36,6 +36,10 @@ export default class CategorySlider extends PureComponent {
     this.dotsRow.move(nativeEvent.position);
   };
 
+  navigateSettings = () => {
+    this.props.navigation("settings");
+  };
+
   render() {
     return (
       <View>
@@ -56,7 +60,7 @@ export default class CategorySlider extends PureComponent {
           name="dots-three-vertical"
           color={styles.colorGreyLight1.color}
           type="entypo"
-          onPress={() => this.props.navigation("settings")}
+          onPress={this.navigateSettings}
         />
         <DotsRow
           ref={instance => {

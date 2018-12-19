@@ -8,8 +8,7 @@ import CategorySlider from "../components/Slider";
 import { colorPrimaryDark, colorGreyDark1 } from "../assets/base";
 
 class NewsScreen extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     const onEnter = async () => {
       if (this.props.settings) {
         await this.props.fetchNews();

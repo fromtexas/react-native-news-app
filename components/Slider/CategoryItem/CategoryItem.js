@@ -155,7 +155,7 @@ export default class CategoryItem extends PureComponent {
             />
           </Animated.View>
         </Animated.View>
-
+        {/* rendering process of NewsList require attention */}
         <NewsList
           banAction={this.props.banAction}
           news={this.props.news[this.props.item]}

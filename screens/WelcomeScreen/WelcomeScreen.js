@@ -26,8 +26,7 @@ import { styles as style } from "./styles";
 import { categories, country } from "../../constants";
 
 class WelcomeScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+  componentDidMount = async () => {
     const onEnter = () => {
       this.setState({ activeScreen: true });
     };
@@ -36,8 +35,18 @@ class WelcomeScreen extends PureComponent {
       this.setState({ activeScreen: false });
     };
 
+    let root = await AsyncStorage.getAllKeys();
+
+    const { category, country } = this.props;
+    const categoryKeys = Object.keys(category);
+    const countryKeys = Object.keys(country);
+
     NavigationStateNotifier.newListener(this, onEnter, onExit);
-  }
+
+    if (categoryKeys.length && countryKeys.length && root) {
+      this.props.navigation.navigate("news");
+    }
+  };
 
   state = {
     activeScreen: true
@@ -53,18 +62,6 @@ class WelcomeScreen extends PureComponent {
     }
 
     return true;
-  };
-
-  componentWillMount = async () => {
-    let root = await AsyncStorage.getAllKeys();
-
-    const { category, country } = this.props;
-    const categoryKeys = Object.keys(category);
-    const countryKeys = Object.keys(country);
-
-    if (categoryKeys.length && countryKeys.length && root) {
-      this.props.navigation.navigate("news");
-    }
   };
 
   render() {
