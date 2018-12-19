@@ -8,23 +8,20 @@ export default class SelectItem extends PureComponent {
     checked: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.options[this.props.item]) {
       this.setState({ checked: true });
     }
   }
 
   change = () => {
-    this.props.update(true);
-
-    if (this.state.checked) {
-      this.props.remove(this.props.item);
-    } else {
-      this.props.add(this.props.item);
-    }
-
-    this.setState({ checked: !this.state.checked });
+    const { update, remove, add, item } = this.props;
+    const { checked } = this.state;
+    update(true);
+    checked ? remove(item) : add(item);
+    this.setState({ checked: !checked });
   };
+
   render() {
     const title =
       this.props.item.charAt(0).toUpperCase() + this.props.item.slice(1);
